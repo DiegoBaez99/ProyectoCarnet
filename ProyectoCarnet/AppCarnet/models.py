@@ -18,7 +18,8 @@ class Persona(models.Model):
     direccion = models.CharField(max_length=70)
     grupo_s = models.ForeignKey(GrupoSanguineo, on_delete=models.PROTECT)
     donante = models.BooleanField()
-    firma = models.CharField(max_length=50) 
+    nacimiento = models.DateField()
+
 
 class TipoCarnet(models.Model):
     tipo = models.CharField(max_length=4)
@@ -36,7 +37,7 @@ class Usuario(models.Model):
     nickname = models.CharField(max_length=25)
     password = models.CharField(max_length=25)
     email = models.EmailField()
-    n_carnet = models.ForeignKey(Carnet, on_delete=models.PROTECT)
+    n_carnet = models.ForeignKey(Carnet, on_delete=models.CASCADE)
 
 
 class Marca(models.Model):
@@ -56,7 +57,7 @@ class Cedula(models.Model):
     num_chasis = models.IntegerField()
     emision = models.DateField()
     vencimiento = models.DateField()
-    seguro = models.ManyToOneRel(Seguro, on_delete=models.CASCADE)
+    seguro = models.ForeignKey(Seguro, on_delete=models.PROTECT)
     
 
 class TipoSeguro(models.Model):
