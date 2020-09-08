@@ -48,6 +48,9 @@ class Modelo(models.Model):
     modelo = models.CharField(max_length=45)
     año = models.DateField()
 
+class TipoVehiculo(models.Model):
+    nombre = models.CharField(max_length=50)
+
 class Cedula(models.Model):
     num_cedula = models.CharField(max_length= 45)
     patente = models.CharField(max_length= 15)
@@ -58,7 +61,8 @@ class Cedula(models.Model):
     emision = models.DateField()
     vencimiento = models.DateField()
     seguro = models.ForeignKey(Seguro, on_delete=models.PROTECT)
-    
+    tipo = models.ForeignKey(TipoVehiculo)
+
 
 class TipoSeguro(models.Model):
     nombre = models.CharField(max_length=30)
