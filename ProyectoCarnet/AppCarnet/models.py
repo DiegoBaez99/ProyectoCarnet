@@ -56,7 +56,7 @@ class Cedula(models.Model):
     num_chasis = models.IntegerField()
     emision = models.DateField()
     vencimiento = models.DateField()
-    seguro = models.ManyToOneRel(Seguro, on_delete=models.CASCADE)
+    seguro = models.ForeignKey(Seguro, on_delete=models.PROTECT)
     
 
 class TipoSeguro(models.Model):
