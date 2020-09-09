@@ -8,7 +8,7 @@ from .forms import forms, CreateUserForm
 # Create your views here.
 def registerPage(request):
     if(request.user.is_authenticated):
-        return redirect('hoy')
+        return redirect('')
     else:
         form = CreateUserForm()
         if(request.method == 'POST'):
@@ -24,7 +24,7 @@ def registerPage(request):
 
 def loginPage(request):
     if(request.user.is_authenticated):
-        return redirect('hoy')
+        return redirect('')
     else:
         if(request.method == 'POST'):
             username = request.POST.get('username')
@@ -32,7 +32,7 @@ def loginPage(request):
             user = authenticate(request, username=username, password=password) #name q esta en el html
             if(user is not None):
                 login(request, user)     
-                return redirect('hoy')
+                return redirect('')
             else:
                 messages.info(request, "Nombre de usuario o contraseña incorrecto.")
 
@@ -42,3 +42,7 @@ def loginPage(request):
 def logoutUser(request):
     logout(request)
     return redirect('login')
+
+def index(request):
+    html = '<html><body><h1> Hola. </h1></body></html>'
+    return HttpResponse(html)
