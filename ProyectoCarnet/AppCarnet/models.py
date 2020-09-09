@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 
 
-class GrupoSanguineo(models.Model):
+"""class GrupoSanguineo(models.Model):
     grupo = models.CharField(max_length=3)
 
 
@@ -73,4 +73,4 @@ class Seguro(models.Model):
     tel = models.IntegerField(max_length=15)
     tel_emergencia = models.IntegerField(max_length=15)
     tipo = models.ForeignKey(TipoSeguro, on_delete=models.PROTECT)
-
+"""
