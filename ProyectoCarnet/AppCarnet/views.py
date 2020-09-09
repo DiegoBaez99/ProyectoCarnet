@@ -6,3 +6,18 @@ from django.http import HttpResponse, Http404
 from .forms import forms, CreateUserForm
 
 # Create your views here.
+def registerPage(request):
+    if(request.user.is_authenticated):
+        return redirect('hoy')
+    else:
+        form = CreateUserForm()
+        if(request.method == 'POST'):
+            form = CreateUserForm(request.POST)
+            if(form.is_valid()):
+                form.save()
+                user = form.cleaned_data.get('username')
+                messages.success(request, "Cuenta "+user+" creada satisfatoriamente.")
+                return redirect('login')
+
+        context = {'form': form}
+        return render(request, 'register.html', context)
