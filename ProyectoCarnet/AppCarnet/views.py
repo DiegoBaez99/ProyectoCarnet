@@ -4,6 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse, Http404
 from .forms import forms, CreateUserForm
+from .models import *
 
 # Create your views here.
 def registerPage(request):
