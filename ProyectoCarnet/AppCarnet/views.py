@@ -45,5 +45,5 @@ def logoutUser(request):
     return redirect('login')
 
 def index(request):
-    html = '<html><body><h1> Hola. </h1></body></html>'
-    return HttpResponse(html)
+    
+    return render(request,'index.html')
