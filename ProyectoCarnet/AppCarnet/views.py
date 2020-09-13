@@ -48,6 +48,12 @@ def index(request):
     
     return render(request,'index.html')
 
+def datouser(request):
+    return render(request,'datouser.html')
+
+def direccion(request):
+    return render(request,"direccion.html")
+
 def card(request):
     
     return render(request,'base.html')

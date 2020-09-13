@@ -8,18 +8,18 @@
     </head>
     <body>
         
-        <form class="register" action="" method="POST">
+        <form class="register" action="/datouser/" method="POST">
 			{% csrf_token %}
             <input type="text" placeholder="Nombre de Usuario">
 			
-			<input type="text" placeholder="Email">
+			<input type="email" placeholder="Email">
 			
             <input type="password" placeholder="Contraseña">
 			
 			<input type="password" placeholder="Ingrese Contraseña">
-			<a href="/index/" class="ml-2">¿Ya tenes cuenta?</a>
-			            
-            <button>Siguiente</button>
+			<a href="/login/" class="ml-2">¿Ya tenes cuenta?</a>
+            			            
+            <button type="submit">Siguiente</button>
         </form>
         
     </body>

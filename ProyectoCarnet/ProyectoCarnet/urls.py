@@ -20,9 +20,12 @@ from AppCarnet import views
 urlpatterns = [
     path('register/', views.registerPage, name='register'),
     path('login/', views.loginPage, name='login'),
+    path('datouser/', views.datouser, name='datouser'),
+    path('direccion/', views.direccion, name='direccion'),
     path('logout/', views.logoutUser, name='logout'),
     path('admin/', admin.site.urls),
     path('index/', views.index, name='index'),
     path('card/', views.card, name='card'),
+    
 
 ]

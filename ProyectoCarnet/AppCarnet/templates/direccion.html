@@ -1,0 +1,26 @@
+<html lang="es">
+    <head>    
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Registrate</title>
+        <link rel="stylesheet" type="text/css" href="../static/register.css">
+    </head>
+    <body>
+        
+        <form class="register" action="" method="POST">
+			{% csrf_token %}
+            <input type="text" placeholder="Barrio">
+			
+			<input type="text" placeholder="Calle">
+			
+            <input type="number" placeholder="Altura">
+
+            <input type="text" placeholder="Piso/Departamento">			
+			
+			<a href="/datouser/" class="ml-2">¿Quieres volver?</a>
+			            
+            <button>Finalizar</button>
+        </form>
+        
+    </body>
+</html>
