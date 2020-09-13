@@ -66,11 +66,11 @@ body {
     color: #A7FA82;
     font-size: 16px;
     text-transform: uppercase;
-    width: 120px;
+    width: 120px;    
     border: 0;
     padding: 10px 0;
     margin-top: 10px;
-    margin-left: -5px;
+    margin-left: 195px;
     border-radius: 5px;
     background-color: #154400;
     -webkit-transition: background-color 300ms;
@@ -117,7 +117,7 @@ body {
     text-decoration-line: underline;
     color:#154400;
     position: absolute;
-    right: 30px;
+    margin-left: -5;
     bottom: 45px;
     font-size: 15px;
   }

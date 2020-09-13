@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>    
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Registrate</title>
+        <link rel="stylesheet" type="text/css" href="../static/register.css">
+    </head>
+    <body>
+        
+        <form class="register" action="/direccion/" method="POST">
+			{% csrf_token %}
+            <input type="text" placeholder="Nombre ">
+			
+			<input type="text" placeholder="Apellido">
+			
+            <input type="number" placeholder="DNI">
+			
+			<input type="date" placeholder="Fecha de Nacimiento">
+			<a href="/register/" class="ml-2">¿Quieres volver?</a>
+			            
+            <button>Siguiente</button>
+        </form>
+        
+    </body>
+</html>
