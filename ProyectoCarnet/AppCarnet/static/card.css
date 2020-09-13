@@ -105,9 +105,9 @@ body {
   transition-delay: 1.7s;
 }
 .blog-slider__img {
-  width: 200px;
+  width: 100px;
   flex-shrink: 0;
-  height: 200px;
+  height: 100px;
   background-image: linear-gradient(147deg, #fe8a39 0%, #fd3838 74%);
   box-shadow: 4px 13px 30px 1px rgba(252, 56, 56, 0.2);
   border-radius: 20px;

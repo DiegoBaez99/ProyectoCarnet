@@ -1,16 +1,14 @@
-{% load static %}
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
     <head>    
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Registrate</title>
-        <link rel="stylesheet" type="text/css" href="../static/login.css">
+        <link rel="stylesheet" type="text/css" href="../static/register.css">
     </head>
     <body>
         
-        <form class="login" action="" method="POST">
+        <form class="register" action="" method="POST">
 			{% csrf_token %}
             <input type="text" placeholder="Nombre de Usuario">
 			
@@ -21,7 +19,7 @@
 			<input type="password" placeholder="Ingrese Contraseña">
 			<a href="/index/" class="ml-2">¿Ya tenes cuenta?</a>
 			            
-            <button>Registrate</button>
+            <button>Siguiente</button>
         </form>
         
     </body>
