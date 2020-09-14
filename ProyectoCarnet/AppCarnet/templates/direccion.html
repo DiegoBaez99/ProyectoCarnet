@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="e">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cargar direccion</title>
+</head>
+<body>
+    <h2>Direccion</h2>
+    <!-- 
+        <form method="POST" action="{% url 'login' %}" class="signup">
+        {% csrf_token %}
+        {% for field in form %}
+            {{ field.errors }}
+            <label>{{ field.label_tag }}</label>
+            <p>{{ field }}</p>
+        {% endfor %}
+        <button type="submit">Siguiente</button>
+        
+    </form>
+    -->
+    <div>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <p>
+                <label for="nombre">Nombre de calle: </label>
+                <input type="text" name="nombre">
+            </p>
+            <p>
+                <label for="numero">Numero calle: </label>
+                <input type="number" name="numero">
+            </p>
+            <p>
+                <label for="piso">Piso/Departamento: </label>
+                <input type="text" name="piso">
+            </p>
+            <p>
+                <label for="altura">Altura: </label>
+                <input type="number" name="altura">
+            </p>
+            <input type="submit" value="Enviar">
+        </form>
+    </div>
+    
+    
+</body>
+</html>
