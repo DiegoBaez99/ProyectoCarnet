@@ -7,21 +7,23 @@ from .forms import forms, CreateUserForm
 from .models import *
 
 # Create your views here.
-def registerPage(request):
+def signup(request):
     if(request.user.is_authenticated):
         return redirect('index')
     else:
-        form = CreateUserForm()
         if(request.method == 'POST'):
             form = CreateUserForm(request.POST)
             if(form.is_valid()):
-                form.save()
-                user = form.cleaned_data.get('username')
-                messages.success(request, "Cuenta "+user+" creada satisfatoriamente.")
+                new_user = form.save()
+                new_user = authenticate(
+                    username = form.cleaned_data['username'],
+                    password = form.cleaned_data['password1']
+                )
+                login(request, new_user)
                 return redirect('login')
-
-        context = {'form': form}
-        return render(request, 'register.html', context)
+        else:
+            form = CreateUserForm()
+    return render(request, 'signup.html', {'form': form})
 
 def loginPage(request):
     if(request.user.is_authenticated):
