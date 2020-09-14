@@ -43,6 +43,7 @@ def loginPage(request):
         context = {}
         return render(request, 'login.html', context)
 
+
 def persona(request):
     if(request.user.is_authenticated):
         return redirect('index')
