@@ -7,42 +7,54 @@ from django.contrib.auth.models import User
 class GrupoSanguineo(models.Model):
     grupo = models.CharField(max_length=3)
 
-
-class Nacionalidad(models.Model):
-    nacionalidad = models.CharField(max_length=30)
-
 class Direcciones(models.Model):
     nombre = models.CharField(max_length=50)
     numero = models.IntegerField()
-    altura = models.IntegerField()
+    piso = models.CharField(max_length=25)
+    altura = models.CharField(blank=True, null=True, max_length=20)
+
+"""class Nacionalidad(models.Model):
+    nacionalidad = models.CharField(max_length=25, null=False)"""
+
+
+class Persona(models.Model):
+    nombre = models.CharField(max_length=50) 
+    apellido = models.CharField(max_length=50)
+    dni = models.IntegerField(primary_key=True)
+    nacimiento = models.DateField()
+    """nacionalidad = models.ForeignKey(Nacionalidad, on_delete=models.PROTECT, null=True)"""
+    direccion = models.ForeignKey(Direcciones, on_delete=models.CASCADE, blank=True, null=True)
+
+    
+    
 
 class TipoCarnet(models.Model):
-    nombre = models.CharField(max_length=20)
-    descripcion = models.CharField(max_length=40)
+    tipo = models.CharField(max_length=4)
 
 class Carnet(models.Model):
-    nombre = models.CharField(max_length=50)
-    apellido = models.CharField(max_length=40)
-    dni = models.IntegerField(primary_key=True)
     n_carnet = models.IntegerField()
     foto = models.ImageField()
     otorgamiento = models.DateField()
     vencimiento = models.DateField()
-    nacimiento = models.DateField()
-    donacion = models.BooleanField(default=True)
-    validado = models.BooleanField(default=False)
-    tipo_carnet = models.ForeignKey(TipoCarnet, on_delete=models.CASCADE)
-    direccion = models.ForeignKey(Direcciones, on_delete=models.CASCADE)
-    nacionalidad = models.ForeignKey(Nacionalidad, on_delete=models.CASCADE)
-    grupo_sanguineo = models.ForeignKey(GrupoSanguineo, on_delete=models.CASCADE)
+    persona = models.ForeignKey(Persona, on_delete=models.CASCADE)
+    tipo_carnet = models.ForeignKey(TipoCarnet, on_delete=models.PROTECT)
+    donante = models.BooleanField(default=False)
+    grupo_s = models.ForeignKey(GrupoSanguineo, on_delete=models.PROTECT, null=True)
+
+
+class Usuario(User):
+    user = models.OneToOneField(User, parent_link= True, on_delete=models.CASCADE)
+    persona = models.OneToOneField(Persona, on_delete = models.CASCADE)
+    n_carnet = models.OneToOneField(Carnet, on_delete=models.CASCADE)
+
 
 class Marca(models.Model):
     nombre = models.CharField(max_length=45)
 
 class Modelo(models.Model):
-    modelo = models.CharField(max_length=45)
-    anio = models.DateField()
     marca = models.ForeignKey(Marca, on_delete=models.PROTECT)
+    modelo = models.CharField(max_length=45)
+    año = models.DateField()
 
 class TipoVehiculo(models.Model):
     nombre = models.CharField(max_length=50)
@@ -52,10 +64,10 @@ class TipoSeguro(models.Model):
 
 class Seguro(models.Model):
     nombre = models.CharField(max_length=50)
-    num_poliza = models.IntegerField()
-    tel = models.IntegerField()
-    tel_emergencia = models.IntegerField()
-    tipo = models.ForeignKey(TipoSeguro, on_delete=models.PROTECT) 
+    num_poliza = models.IntegerField(max_length=30)
+    tel = models.IntegerField(max_length=15)
+    tel_emergencia = models.IntegerField(max_length=15)
+    tipo = models.ForeignKey(TipoSeguro, on_delete=models.PROTECT)    
 
 class Cedula(models.Model):
     num_cedula = models.CharField(max_length= 45)
@@ -68,20 +80,6 @@ class Cedula(models.Model):
     vencimiento = models.DateField()
     seguro = models.ForeignKey(Seguro, on_delete=models.PROTECT)
     tipo = models.ForeignKey(TipoVehiculo, on_delete=models.PROTECT)
-
-
-class Usuario(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    carnet = models.OneToOneField(Carnet, on_delete=models.CASCADE)
-    #cedula = models.ForeignKey(Cedula, on_delete=models.CASCADE)
-
-
-
-
-
-
-   
-
 
 
 
