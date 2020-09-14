@@ -18,7 +18,7 @@ from django.urls import path
 from AppCarnet import views
 
 urlpatterns = [
-    path('register/', views.registerPage, name='register'),
+    path('signup/', views.signup, name='signup'),
     path('login/', views.loginPage, name='login'),
     path('logout/', views.logoutUser, name='logout'),
     path('admin/', admin.site.urls),
