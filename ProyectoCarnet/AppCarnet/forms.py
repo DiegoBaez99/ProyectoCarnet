@@ -15,6 +15,7 @@ class cargarDireccion(forms.ModelForm):
         model = Direcciones
         fields = ('nombre', 'numero', 'piso', 'altura')
 
+
 class cargarPersona(forms.ModelForm):
     class Meta:
         model = Persona
