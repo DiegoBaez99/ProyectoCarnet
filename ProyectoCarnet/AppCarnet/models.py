@@ -13,21 +13,18 @@ class Direcciones(models.Model):
     piso = models.CharField(max_length=25)
     altura = models.CharField(blank=True, null=True, max_length=20)
 
-"""class Nacionalidad(models.Model):
-    nacionalidad = models.CharField(max_length=25, null=False)"""
+class Nacionalidad(models.Model):
+    nacionalidad = models.CharField(max_length=25, null=False)
 
 
 class Persona(models.Model):
     nombre = models.CharField(max_length=50) 
     apellido = models.CharField(max_length=50)
     dni = models.IntegerField(primary_key=True)
-<<<<<<< HEAD
     nacionalidad = models.ForeignKey(Nacionalidad, on_delete=models.PROTECT)
     direccion = models.CharField(max_length=70)
     grupo_s = models.ForeignKey(GrupoSanguineo, on_delete=models.PROTECT)
     donante = models.BooleanField()
-=======
->>>>>>> origin/andino
     nacimiento = models.DateField()
     """nacionalidad = models.ForeignKey(Nacionalidad, on_delete=models.PROTECT, null=True)"""
     direccion = models.ForeignKey(Direcciones, on_delete=models.CASCADE, blank=True, null=True)
