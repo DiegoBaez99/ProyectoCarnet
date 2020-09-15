@@ -53,7 +53,7 @@ def persona(request):
         if(request.method == 'POST'):
             form = cargarPersona(request.POST)
             if(form.is_valid()):
-                person = Usuario(first_name=request.POST['first_name'], last_name=request.POST['last_name'], dni=request.POST['dni'], nacimiento=request.POST['nacimiento'])
+                person = Usuario(first_name=request.POST.get('first_name', False), last_name=request.POST.get('last_name', False), dni=request.POST.get('dni', False), nacimiento=request.POST.get('nacimiento', False))
                 person.save(commit=False)
                 messages.success(request, "Datos cargados satisfatoriamente.")
                 if(person == None):    
