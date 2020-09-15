@@ -9,13 +9,9 @@ class DireccionesAdmin(admin.ModelAdmin):
     pass
 class NacionalidadAdmin(admin.ModelAdmin):
     pass
-class PersonaAdmin(admin.ModelAdmin):
-    pass
 class TipoCarnetAdmin(admin.ModelAdmin):
     pass
 class CarnetAdmin(admin.ModelAdmin):
-    pass
-class UsuarioAdmin(admin.ModelAdmin):
     pass
 class MarcaAdmin(admin.ModelAdmin):
     pass
@@ -35,10 +31,8 @@ class CedulaAdmin(admin.ModelAdmin):
 admin.site.register(GrupoSanguineo, GrupoSanguineoAdmin)
 admin.site.register(Direcciones, DireccionesAdmin)
 admin.site.register(Nacionalidad, NacionalidadAdmin)
-admin.site.register(Persona, PersonaAdmin)
 admin.site.register(TipoCarnet, TipoCarnetAdmin)
 admin.site.register(Carnet, CarnetAdmin)
-admin.site.register(Usuario, UsuarioAdmin)
 admin.site.register(Marca, MarcaAdmin)
 admin.site.register(Modelo, ModeloAdmin)
 admin.site.register(TipoVehiculo, TipoVehiculoAdmin)

@@ -4,7 +4,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse, Http404
 from .forms import forms, CreateUserForm, cargarDireccion, cargarPersona
-from .models import Direcciones, Persona
+from .models import Direcciones
+from user.models import Usuario
 
 # Create your views here.
 # Create your views here.
@@ -52,16 +53,16 @@ def persona(request):
         if(request.method == 'POST'):
             form = cargarPersona(request.POST)
             if(form.is_valid()):
-                person = Persona(nombre=request.POST['nombre'], apellido=request.POST['apellido'], dni=request.POST['dni'], nacimiento=request.POST['nacimiento'])
-                person.save()
-                messages.success(request, "Persona creada satisfatoriamente.")
+                person = Usuario(first_name=request.POST['first_name'], last_name=request.POST['last_name'], dni=request.POST['dni'], nacimiento=request.POST['nacimiento'])
+                person.save(commit=False)
+                messages.success(request, "Datos cargados satisfatoriamente.")
                 if(person == None):    
                     messages.info(request, "Datos Incompleto.")
             return redirect('index')
         else:
             form = cargarPersona()
 
-        return render(request, 'persona.html', {'form': form})
+        return render(request, 'datos1.html', {'form': form})
 
 def direccion(request):
     if(request.user.is_authenticated):

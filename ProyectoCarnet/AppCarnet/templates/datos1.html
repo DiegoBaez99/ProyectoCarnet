@@ -8,15 +8,15 @@
 <body>
     
     <div>
-        <form action="" method="POST">
+        <form action="{% url 'login' %}" method="POST">
             {% csrf_token %}
             <p>
-                <label for="nombre">Nombre: </label>
-                <input type="text" name="nombre">
+                <label for="first_name">Nombre: </label>
+                <input type="text" name="first_name">
             </p>
             <p>
-                <label for="apellido">Apellido: </label>
-                <input type="text" name="apellido">
+                <label for="last_name">Apellido: </label>
+                <input type="text" name="last_name">
             </p>
             <p>
                 <label for="dni">DNI: </label>
