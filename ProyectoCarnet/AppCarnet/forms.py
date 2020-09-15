@@ -21,7 +21,7 @@ class cargarPersona(forms.ModelForm):
         fields = ('first_name', 'last_name', 'dni', 'nacimiento')
     
 class CustomUserCreationForm(forms.Form):
-    username = forms.CharField(label='Ingrese un nombre de usuario', min_length=4, max_length=150)
+    username = forms.CharField(label='Ingrese un nombre de usuario', min_length=4, max_length=35)
     email = forms.EmailField(label='Ingrese un email')
     password1 = forms.CharField(label='Ingrese una contraseña', widget=forms.PasswordInput)
     password2 = forms.CharField(label='Confirme la contraseña', widget=forms.PasswordInput)
@@ -30,14 +30,14 @@ class CustomUserCreationForm(forms.Form):
         username = self.cleaned_data['username'].lower()
         r = Usuario.objects.filter(username=username)
         if r.count():
-            raise  ValidationError("Ese nombre de usuario ya existe.")
+            raise  ValidationError(f"{username} ya existe.Pruebe otro nombre de usuario")
         return username
 
     def clean_email(self):
         email = self.cleaned_data['email'].lower()
         r = Usuario.objects.filter(email=email)
         if r.count():
-            raise  ValidationError("Ese email ya esta registrado.")
+            raise  ValidationError(f"{email} ya esta registrado. Pruebe con otro email.")
         return email
 
     def clean_password2(self):
