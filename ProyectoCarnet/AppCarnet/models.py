@@ -6,15 +6,22 @@ from django.contrib.auth.models import User
 
 class GrupoSanguineo(models.Model):
     grupo = models.CharField(max_length=3)
+    
+    def __str__(self):
+        return self.grupo
 
 class Direcciones(models.Model):
     nombre = models.CharField(max_length=50)
     numero = models.IntegerField()
     piso = models.CharField(max_length=25)
     altura = models.CharField(blank=True, null=True, max_length=20)
+    def __str__(self):
+        return f'{self.nombre} {self.altura} {self.numero} piso: {self.piso}'
 
 class Nacionalidad(models.Model):
     nacionalidad = models.CharField(max_length=25, null=False)
+    def __str__(self):
+        return self.nacionalidad
 
 
 class Persona(models.Model):
@@ -34,6 +41,8 @@ class Persona(models.Model):
 
 class TipoCarnet(models.Model):
     tipo = models.CharField(max_length=4)
+    def __str__(self):
+        return self.tipo
 
 class Carnet(models.Model):
     n_carnet = models.IntegerField()
@@ -54,17 +63,23 @@ class Usuario(User):
 
 class Marca(models.Model):
     nombre = models.CharField(max_length=45)
+    def __str__(self):
+        return self.nombre
 
 class Modelo(models.Model):
     marca = models.ForeignKey(Marca, on_delete=models.PROTECT)
     modelo = models.CharField(max_length=45)
     año = models.DateField()
+    def __str__(self):
+        return f'marca: {self.marca}, modelo: {self.modelo}, año: {self.año}'
 
 class TipoVehiculo(models.Model):
     nombre = models.CharField(max_length=50)
 
 class TipoSeguro(models.Model):
     nombre = models.CharField(max_length=30)
+    def __str__(self):
+        return self.nombre
 
 class Seguro(models.Model):
     nombre = models.CharField(max_length=50)
