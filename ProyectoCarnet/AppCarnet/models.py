@@ -7,20 +7,33 @@ from django.contrib.auth.models import User
 class GrupoSanguineo(models.Model):
     grupo = models.CharField(max_length=3)
 
+class Direcciones(models.Model):
+    nombre = models.CharField(max_length=50)
+    numero = models.IntegerField()
+    piso = models.CharField(max_length=25)
+    altura = models.CharField(blank=True, null=True, max_length=20)
 
-class Nacionalidad(models.Model):
-    nacionalidad = models.CharField(max_length=25)
+"""class Nacionalidad(models.Model):
+    nacionalidad = models.CharField(max_length=25, null=False)"""
+
 
 class Persona(models.Model):
     nombre = models.CharField(max_length=50) 
     apellido = models.CharField(max_length=50)
     dni = models.IntegerField(primary_key=True)
+<<<<<<< HEAD
     nacionalidad = models.ForeignKey(Nacionalidad, on_delete=models.PROTECT)
     direccion = models.CharField(max_length=70)
     grupo_s = models.ForeignKey(GrupoSanguineo, on_delete=models.PROTECT)
     donante = models.BooleanField()
+=======
+>>>>>>> origin/andino
     nacimiento = models.DateField()
+    """nacionalidad = models.ForeignKey(Nacionalidad, on_delete=models.PROTECT, null=True)"""
+    direccion = models.ForeignKey(Direcciones, on_delete=models.CASCADE, blank=True, null=True)
 
+    
+    
 
 class TipoCarnet(models.Model):
     tipo = models.CharField(max_length=4)
@@ -32,6 +45,8 @@ class Carnet(models.Model):
     vencimiento = models.DateField()
     persona = models.ForeignKey(Persona, on_delete=models.CASCADE)
     tipo_carnet = models.ForeignKey(TipoCarnet, on_delete=models.PROTECT)
+    donante = models.BooleanField(default=False)
+    grupo_s = models.ForeignKey(GrupoSanguineo, on_delete=models.PROTECT, null=True)
 
 
 class Usuario(User):
