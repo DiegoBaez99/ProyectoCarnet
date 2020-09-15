@@ -28,6 +28,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -38,7 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'AppCarnet',
+    'user'
 ]
+#AUTH_USER_MODEL='auth.User'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -123,3 +126,6 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
     '/static/',
 ]
+MEDIA_URL = '/media/'
+
+AUTH_USER_MODEL = 'user.Usuario'
