@@ -1,10 +1,11 @@
 from .models import Direcciones
+from user.models import Usuario
 from django.contrib.auth.models import User
 from django import forms
 from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import get_user_model
-from user.models import Usuario
+
+
 
 class cargarDireccion(forms.ModelForm):
     class Meta:
@@ -19,8 +20,10 @@ class cargarPersona(forms.ModelForm):
         fields = ('first_name', 'last_name', 'dni', 'nacimiento')
     
 
-class CreateUserForm(UserCreationForm):
+class CreateUserForm(forms.ModelForm):
     email = forms.EmailField(required=True, label='Email',error_messages={'exists': 'This already exists!'})
+    password1 = forms.CharField(max_length=30)
+    password2 = forms.CharField(max_length=30)
 
     class Meta:
         model = Usuario

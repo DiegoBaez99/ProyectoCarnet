@@ -41,8 +41,8 @@ def loginPage(request):
             else:
                 messages.info(request, "Nombre de usuario o contraseña incorrecto.")
 
-        context = {}
-        return render(request, 'login.html', context)
+    context = {}
+    return render(request, 'login.html', context)
 
 
 def persona(request):
