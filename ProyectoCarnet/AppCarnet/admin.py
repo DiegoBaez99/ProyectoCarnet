@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import *
+from user.models import Usuario
 
 # Register your models here.
 class GrupoSanguineoAdmin(admin.ModelAdmin):
@@ -25,6 +26,8 @@ class SeguroAdmin(admin.ModelAdmin):
     list_display = ('num_poliza', 'tipo', 'nombre', 'tel', 'tel_emergencia')
 class CedulaAdmin(admin.ModelAdmin):
     pass
+
+
 
 
 

@@ -11,6 +11,7 @@ class Usuario(AbstractUser):
     nacionalidad = models.ForeignKey(Nacionalidad, on_delete=models.CASCADE, null=True)
     grupo_s = models.ForeignKey(GrupoSanguineo, on_delete=models.CASCADE, null=True)
     direccion = models.ForeignKey(Direcciones, on_delete=models.CASCADE, null=True)
+    validado = models.BooleanField(default=False)
 
     def getImage(self):
         if(self.image):
