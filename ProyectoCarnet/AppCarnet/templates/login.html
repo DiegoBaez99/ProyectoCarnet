@@ -8,8 +8,9 @@
 </head>
 <body>
 {% block content %}
-	<h2>Login</h2>
+	
 	<form class="login" action="{% url 'index' %}" method="POST">
+		<center><h2>Login</h2></center>
 		{% csrf_token %}
 		<input type="text" placeholder="Nombre de Usuario">
 		<input type="password" placeholder="Contraseña">
