@@ -11,7 +11,7 @@ body {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 600px;
+    width: 300px;
     -webkit-transform: translate(-50%, -50%);
     -moz-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
@@ -25,8 +25,8 @@ body {
   .signup::before, .signup::after {
     content: "";
     position: absolute;
-    width: 600px;
-    height: 600px;
+    width: 800px;
+    height: 900px;
     border-top-left-radius: 40%;
     border-top-right-radius: 45%;
     border-bottom-left-radius: 35%;
