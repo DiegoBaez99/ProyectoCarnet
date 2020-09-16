@@ -1,12 +1,10 @@
-
 {% block title %}
-    Crear Usuario
+    Cargar carnet
 {% endblock %}
 
 {% block content %}
     
-     <div class="login">
-
+     <div class="carnet">
          {% if messages %}
             <ul>
                 {% for message in messages %}
@@ -14,8 +12,7 @@
                 {% endfor %}
             </ul>
         {% endif %}
-
-        <h1>Crear usuario</h1>
+        <h1>Cargar carnet</h1>
 
          <form method="post" >
              {% csrf_token %}

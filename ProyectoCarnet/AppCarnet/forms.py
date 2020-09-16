@@ -1,4 +1,4 @@
-from .models import Direcciones
+from .models import Direcciones, Carnet
 from user.models import Usuario
 from django.contrib.auth.models import User
 from django import forms
@@ -19,7 +19,37 @@ class cargarPersona(forms.ModelForm):
     class Meta:
         model = Usuario
         fields = ('first_name', 'last_name', 'dni', 'nacimiento')
+
+
+class CargarCarnet(forms.Form):
+    n_carnet = forms.IntegerField(label='Ingrese su numero de carnet: ')
+    foto = forms.ImageField(label='Ingrese una foto de su carnet: ')
+    otorgamiento = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
+    vencimiento = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
     
+    def clean_n_carnet(self):
+        n_carnet = self.cleaned_data['n_carnet']
+        return n_carnet
+
+    def clean_foto(self):
+        foto = self.cleaned_data['foto']
+        return foto
+    
+    def clean_otorgamiento(self):
+        otorgamiento = self.cleaned_data['otorgamiento']
+        return otorgamiento
+    
+    def clean_vencimiento(self):
+        vencimiento = self.cleaned_data['vencimiento']
+        return vencimiento
+    
+    def save(self, commit=False):
+        carnet = Carnet.objects.create(self.cleaned_data['n_carnet'], self.cleaned_data['foto'],self.cleaned_data['otorgamiento'],self.cleaned_data['vencimiento']
+        )
+        return carnet
+
+    
+
 class CustomUserCreationForm(forms.Form):
     username = forms.CharField(label='Ingrese un nombre de usuario', min_length=4, max_length=35)
     email = forms.EmailField(label='Ingrese un email')

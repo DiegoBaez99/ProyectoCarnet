@@ -30,7 +30,7 @@ class TipoCarnet(models.Model):
         return self.tipo
 
 class Carnet(models.Model):
-    n_carnet = models.IntegerField()
+    n_carnet = models.IntegerField(blank=True)
     foto = models.ImageField()
     otorgamiento = models.DateField()
     vencimiento = models.DateField()
