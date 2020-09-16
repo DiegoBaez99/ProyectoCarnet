@@ -20,12 +20,14 @@ class cargarPersona(forms.ModelForm):
         model = Usuario
         fields = ('first_name', 'last_name', 'dni', 'nacimiento')
     
-class CustomUserCreationForm(forms.Form):
-    username = forms.CharField(label='Ingrese un nombre de usuario', min_length=4, max_length=35)
-    email = forms.EmailField(label='Ingrese un email')
-    password1 = forms.CharField(label='Ingrese una contraseña', widget=forms.PasswordInput)
-    password2 = forms.CharField(label='Confirme la contraseña', widget=forms.PasswordInput)
+class CustomUserCreationForm(forms.Form):     
+    
 
+    username = forms.CharField(label='', min_length=4, max_length=35, widget=forms.TextInput(attrs={'placeholder': 'Nombre de Usuario'}))
+    email = forms.EmailField(label='',widget=forms.TextInput(attrs={'placeholder': 'Email'}))
+    password1 = forms.CharField(label='', widget=forms.PasswordInput(attrs= {'placeholder': 'Contraseña'}))
+    password2 = forms.CharField(label='', widget=forms.PasswordInput(attrs= {'placeholder': 'Confirmar Contraseña'}))
+    
     def clean_username(self):
         username = self.cleaned_data['username'].lower()
         r = Usuario.objects.filter(username=username)
