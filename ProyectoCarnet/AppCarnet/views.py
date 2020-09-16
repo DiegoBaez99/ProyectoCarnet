@@ -3,7 +3,7 @@ from django.contrib import messages, auth
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate
 from django.http import HttpResponse, Http404
-from .forms import forms, CustomUserCreationForm, cargarDireccion, cargarPersona
+from .forms import forms, CustomUserCreationForm, cargarDireccion, cargarPersona, CargarCarnet
 from .models import Direcciones
 from user.models import Usuario
 from django.contrib.auth.decorators import login_required
@@ -47,6 +47,18 @@ def login(request):
 def logout(request):
     auth.logout(request)
     return render(request,'logout.html')
+
+def carnet(request):
+    if request.method == 'POST':
+        f = CargarCarnet(request.POST)
+        if f.is_valid():
+            f.save()
+            messages.success(request, 'Carnet creado satisfactoriamente.')
+            return redirect('login')
+    else:
+        f = CargarCarnet()
+
+    return render(request, 'carnet.html', {'form': f})
 
 
 def persona(request):
