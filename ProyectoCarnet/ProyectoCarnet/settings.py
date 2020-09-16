@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'AppCarnet',
-    'user'
+    'user',
+    
 ]
 #AUTH_USER_MODEL='auth.User'
 
