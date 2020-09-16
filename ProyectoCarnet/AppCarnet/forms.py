@@ -39,23 +39,14 @@ class CargarCarnet(forms.Form):
         otorgamiento = self.cleaned_data['otorgamiento']
         return otorgamiento
     
-    def clean_vencimiento(self):
-        vencimiento = self.cleaned_data['vencimiento']
-        return vencimiento
-    
-    def save(self, commit=False):
-        carnet = Carnet.objects.create(self.cleaned_data['n_carnet'], self.cleaned_data['foto'],self.cleaned_data['otorgamiento'],self.cleaned_data['vencimiento']
-        )
-        return carnet
-
+class CustomUserCreationForm(forms.Form):     
     
 
-class CustomUserCreationForm(forms.Form):
-    username = forms.CharField(label='Ingrese un nombre de usuario', min_length=4, max_length=35)
-    email = forms.EmailField(label='Ingrese un email')
+    username = forms.CharField(label='Nombre de Usuario', min_length=4, max_length=35, widget=forms.TextInput)
+    email = forms.EmailField(label='Email',widget=forms.TextInput)
     password1 = forms.CharField(label='Ingrese una contraseña', widget=forms.PasswordInput)
-    password2 = forms.CharField(label='Confirme la contraseña', widget=forms.PasswordInput)
-
+    password2 = forms.CharField(label='Confirmar contraseña', widget=forms.PasswordInput)
+    
     def clean_username(self):
         username = self.cleaned_data['username'].lower()
         r = Usuario.objects.filter(username=username)
