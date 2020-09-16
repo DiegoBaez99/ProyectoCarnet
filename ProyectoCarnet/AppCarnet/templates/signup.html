@@ -9,19 +9,26 @@
 <body>
 {% block content %}
 
-    <h2>Sign Up</h2>
-    <form method="POST" action="{% url 'login' %}" class="signup">
-        {% csrf_token %}
-        {% for field in form %}
-            {{ field.errors }}
-            <label>{{ field.label_tag }}</label>
-            <p>{{ field }}</p>
-        {% endfor %}
-        <button type="submit">Registrarse</button>
-        <a href="{% url 'login' %}">Ya tenes una cuenta</a>
-    </form>
+    <div class="login">
 
+         <form method="post" class="signup" >
+            <h1>Crear usuario</h1>
+            {% if messages %}
+            <ul>
+                {% for message in messages %}
+                <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            {% csrf_token %}
+             <table>
+                {{ form.as_table }}
+                 <tr>
+                    <td></td>
+                    <td><input type="submit" name="submit" value="Registrar" /></td>
+                </tr>
+             </table>
+         </form>
+     </div>
 
 {% endblock %}
-</body>
-</html>

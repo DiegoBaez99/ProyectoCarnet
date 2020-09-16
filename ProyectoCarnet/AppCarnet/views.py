@@ -3,29 +3,23 @@ from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse, Http404
-from .forms import forms, CreateUserForm, cargarDireccion, cargarPersona
+from .forms import forms, CustomUserCreationForm, cargarDireccion, cargarPersona
 from .models import Direcciones
 from user.models import Usuario
+from django.contrib.auth.decorators import login_required
 
-# Create your views here.
-# Create your views here.
+
 def signup(request):
-    if(request.user.is_authenticated):
-        return redirect('index')
+    if request.method == 'POST':
+        f = CustomUserCreationForm(request.POST)
+        if f.is_valid():
+            f.save()
+            messages.success(request, 'Cuenta creada satisfactoriamente.')
+            return redirect('login')
     else:
-        if(request.method == 'POST'):
-            form = CreateUserForm(request.POST)
-            if(form.is_valid()):
-                new_user = form.save()
-                new_user = authenticate(
-                    username = form.cleaned_data['username'],
-                    password = form.cleaned_data['password1']
-                )
-                login(request, new_user)
-                return redirect('login')
-        else:
-            form = CreateUserForm()
-    return render(request, 'signup.html', {'form': form})
+        f = CustomUserCreationForm()
+
+    return render(request, 'signup.html', {'form': f})
 
 def loginPage(request):
     if(request.user.is_authenticated):
@@ -87,5 +81,5 @@ def logoutUser(request):
     return redirect('login')
 
 def index(request):
-    html = '<html><body><h1> Hola. </h1></body></html>'
-    return HttpResponse(html)
+    
+    return render(request,'index.html')
