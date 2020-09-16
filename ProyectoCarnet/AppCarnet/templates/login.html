@@ -26,7 +26,8 @@
                     <td><input type="submit" value="Entrar"></td>
 				</tr>
 			</table>
-			<a href="{% url 'signup' %}">Registrate aquí</a>
+            <a href="{% url 'signup' %}">Registrate aquí</a>
+            <a href="{% url 'reset_password' %}">¿Olvidaste tu contraseña?</a>
 		</form>
 
 		{% if messages %}
