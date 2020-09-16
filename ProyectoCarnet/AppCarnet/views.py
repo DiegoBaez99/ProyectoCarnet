@@ -8,6 +8,8 @@ from .models import Direcciones
 from user.models import Usuario
 from django.contrib.auth.decorators import login_required
 
+def home(request):
+    return render(request, 'home.html')
 
 def signup(request):
     if request.method == 'POST':
