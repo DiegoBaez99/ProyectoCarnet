@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,29 +7,20 @@
     <link rel="stylesheet" type="text/css" href="../static/css/signup.css">
 </head>
 <body>
-=======
-
-{% block title %}
-    Crear Usuario
-{% endblock %}
-
->>>>>>> master
 {% block content %}
 
-     <div class="login">
+    <div class="login">
 
-         {% if messages %}
+         <form method="post" class="signup" >
+            <h1>Crear usuario</h1>
+            {% if messages %}
             <ul>
                 {% for message in messages %}
                 <li>{{ message }}</li>
                 {% endfor %}
             </ul>
-        {% endif %}
-
-        <h1>Crear usuario</h1>
-
-         <form method="post" >
-             {% csrf_token %}
+            {% endif %}
+            {% csrf_token %}
              <table>
                 {{ form.as_table }}
                  <tr>
