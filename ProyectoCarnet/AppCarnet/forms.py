@@ -1,4 +1,4 @@
-from .models import Direcciones
+from .models import Direcciones, Carnet
 from user.models import Usuario
 from django.contrib.auth.models import User
 from django import forms
@@ -19,14 +19,33 @@ class cargarPersona(forms.ModelForm):
     class Meta:
         model = Usuario
         fields = ('first_name', 'last_name', 'dni', 'nacimiento')
+
+
+class CargarCarnet(forms.Form):
+    n_carnet = forms.IntegerField(label='Ingrese su numero de carnet: ')
+    foto = forms.ImageField(label='Ingrese una foto de su carnet: ')
+    otorgamiento = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
+    vencimiento = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
+    
+    def clean_n_carnet(self):
+        n_carnet = self.cleaned_data['n_carnet']
+        return n_carnet
+
+    def clean_foto(self):
+        foto = self.cleaned_data['foto']
+        return foto
+    
+    def clean_otorgamiento(self):
+        otorgamiento = self.cleaned_data['otorgamiento']
+        return otorgamiento
     
 class CustomUserCreationForm(forms.Form):     
     
 
-    username = forms.CharField(label='', min_length=4, max_length=35, widget=forms.TextInput(attrs={'placeholder': 'Nombre de Usuario'}))
-    email = forms.EmailField(label='',widget=forms.TextInput(attrs={'placeholder': 'Email'}))
-    password1 = forms.CharField(label='', widget=forms.PasswordInput(attrs= {'placeholder': 'Contraseña'}))
-    password2 = forms.CharField(label='', widget=forms.PasswordInput(attrs= {'placeholder': 'Confirmar Contraseña'}))
+    username = forms.CharField(label='Nombre de Usuario', min_length=4, max_length=35, widget=forms.TextInput)
+    email = forms.EmailField(label='Email',widget=forms.TextInput)
+    password1 = forms.CharField(label='Ingrese una contraseña', widget=forms.PasswordInput)
+    password2 = forms.CharField(label='Confirmar contraseña', widget=forms.PasswordInput)
     
     def clean_username(self):
         username = self.cleaned_data['username'].lower()

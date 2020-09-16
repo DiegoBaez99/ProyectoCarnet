@@ -1,23 +1,54 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Login</title>
-	<link rel="stylesheet" type="text/css" href="../static/css/login.css">
-</head>
-<body>
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Login {% endblock title %}
 {% block content %}
-	
-	<form class="login" action="{% url 'index' %}" method="POST">
-		<center><h2>Login</h2></center>
-		{% csrf_token %}
-		<input type="text" placeholder="Nombre de Usuario">
-		<input type="password" placeholder="Contraseña">
-		<a href="{% url 'signup' %}" class="ml-2">Registrate</a>
-		<button type="submit">Ingresar</button>
-	</form>
-	
-{% endblock %}
-</body>
-</html>
+    
+    <form action="" method="post" class="section-inner clearfix">
+        <br>
+        <br>        
+        <center><h2>Login</h2></center>
+        {% csrf_token %}
+        <table>
+            
+            <tr>
+                <td></td>
+                <td><label for="id_username">Nombre de usuario:</label></td>
+                <td><input type="text" id="id_username" name="username"></td>
+                <td></td>
+            </tr>
+            <tr></tr>
+            <tr>
+                <td></td>
+                <td><label for="id_username">Contraseña: </label></td>
+                <td><input type="password" id="id_password" name="password"></td>
+                <td></td>
+            </tr>
+            <tr></tr>
+            <tr>
+                
+                <td></td>                
+                <td></td>
+                <td><input type="submit" value="Entrar"></td>
+                <td></td>
+            </tr>
+            <tr></tr>
+            <tr>
+                <td></td>
+                <td><p><a href="{% url 'signup' %}">Registrate aquí</a></p></td>
+                <td><a href="{% url 'reset_password' %}">¿Olvidaste tu contraseña?</a></td>
+                <td></td>  
+            </tr>
+        </table>
+        
+    </form>
+
+        {% if messages %}
+            <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}        
+   
+
+{% endblock content%}
