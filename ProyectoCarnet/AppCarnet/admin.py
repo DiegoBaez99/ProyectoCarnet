@@ -17,13 +17,15 @@ class CarnetAdmin(admin.ModelAdmin):
 class MarcaAdmin(admin.ModelAdmin):
     pass
 class ModeloAdmin(admin.ModelAdmin):
-    list_display = ('marca', 'modelo', 'año')
+    list_display = ('marca', 'modelo', 'anio')
 class TipoVehiculoAdmin(admin.ModelAdmin):
     pass
 class TipoSeguroAdmin(admin.ModelAdmin):
     pass
+class TipoUsoAdmin(admin.ModelAdmin):
+    pass
 class SeguroAdmin(admin.ModelAdmin):
-    list_display = ('num_poliza', 'tipo', 'nombre', 'tel', 'tel_emergencia')
+    list_display = ('num_poliza', 'nombre', 'tel', 'tel_emergencia')
 class CedulaAdmin(admin.ModelAdmin):
     pass
 
@@ -39,6 +41,6 @@ admin.site.register(Carnet, CarnetAdmin)
 admin.site.register(Marca, MarcaAdmin)
 admin.site.register(Modelo, ModeloAdmin)
 admin.site.register(TipoVehiculo, TipoVehiculoAdmin)
-admin.site.register(TipoSeguro, TipoSeguroAdmin)
+admin.site.register(TipoUso, TipoUsoAdmin)
 admin.site.register(Seguro, SeguroAdmin)
 admin.site.register(Cedula, CedulaAdmin)

@@ -1,4 +1,4 @@
-from .models import Direcciones, Carnet, GrupoSanguineo,TipoCarnet
+from .models import Direcciones, Carnet, GrupoSanguineo,TipoCarnet,Marca,Modelo,TipoUso,Seguro, Cedula
 from user.models import Usuario
 from django.contrib.auth.models import User
 from django import forms
@@ -112,27 +112,30 @@ class CustomUserCreationForm(forms.Form):
         return user
 
 
+class CargarCedula(forms.Form):
+    num_cedula = forms.IntegerField(label="Ingrese el numero de su cedula")
+    patente = forms.CharField(label="Ingrese su patente", max_length=8)
+    marca = forms.ModelChoiceField(label="Ingrese la marca", queryset=Marca.objects.all())
+    modelo = forms.ModelChoiceField(label="Ingrese el modelo del auto", queryset=Modelo.objects.all())
+    uso = forms.ModelChoiceField(label="Ingrese el tipo de uso del vehiculo", queryset=TipoUso.objects.all())
+    num_motor = forms.CharField(label='Ingrese el numero de motor', max_length=25)
+    num_chasis = forms.CharField(label="Ingrese el numero de chasis", max_length=25)
+    emision = forms.DateField(label="Fecha de emision")
+    vencimiento = forms.DateField(label="Fecha de vencimiento")
+    seguro = forms.ModelChoiceField(label="Ingrese el seguro", queryset=Seguro.objects.all())
 
-
-
-
-"""class CreateUserForm(forms.ModelForm):
-    email = forms.EmailField(required=True, label='Email',error_messages={'exists': 'This already exists!'})
-    password1 = forms.CharField(max_length=30)
-    password2 = forms.CharField(max_length=30)
-
-    class Meta:
-        model = Usuario
-        fields = ('username', 'email', 'password1', 'password2')
-
-    def save(self, commit=True):
-        user = super(CreateUserForm, self).save(commit=False)
-        user.email = self.cleaned_data['email']
-        if commit:
-            user.save()
-        return user
-
-    def clean_email(self):
-        if User.objects.filter(email=self.cleaned_data['email']).exists():
-            raise forms.ValidationError(self.fields['email'].error_messages['exists'])
-        return self.cleaned_data['email']"""
+    def save(self):
+        cedu = Cedula(
+        num_cedula=self.cleaned_data['num_cedula'],
+        patente=self.cleaned_data['patente'],
+        marca=self.cleaned_data['marca'],
+        modelo=self.cleaned_data['modelo'],
+        uso=self.cleaned_data['uso'],
+        num_motor = self.cleaned_data['num_motor'],
+        num_chasis = self.cleaned_data['num_chasis'],
+        emision = self.cleaned_data['emision'],
+        vencimiento = self.cleaned_data['vencimiento'],
+        seguro = self.cleaned_data['seguro']
+        )
+        cedu.save()
+        return cedu

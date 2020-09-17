@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}
-    Cargar carnet
+    Cargar cedula
 {% endblock %}
 
 {% block content %}
@@ -14,7 +14,7 @@
                 {% endfor %}
             </ul>
         {% endif %}
-        <h1>Cargar carnet</h1>
+        <h1>Cargar Cedula</h1>
 
          <form method="post" >
              {% csrf_token %}

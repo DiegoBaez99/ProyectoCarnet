@@ -31,7 +31,7 @@ class TipoCarnet(models.Model):
 
 class Carnet(models.Model):
     n_carnet = models.IntegerField(primary_key=True)
-    foto = models.ImageField()
+    foto = models.ImageField(upload_to='fotos_persona', null=True,blank=True)
     otorgamiento = models.DateField()
     vencimiento = models.DateField()
     tipo_carnet = models.ForeignKey(TipoCarnet, on_delete=models.PROTECT, null=True)
@@ -45,32 +45,34 @@ class Marca(models.Model):
     def __str__(self):
         return self.nombre
 
-class Modelo(models.Model):
-    marca = models.ForeignKey(Marca, on_delete=models.PROTECT)
-    modelo = models.CharField(max_length=45)
-    año = models.DateField()
-    def __str__(self):
-        return f'marca: {self.marca}, modelo: {self.modelo}, año: {self.año}'
-
 class TipoVehiculo(models.Model):
     nombre = models.CharField(max_length=50)
 
-class TipoSeguro(models.Model):
-    nombre = models.CharField(max_length=30)
+class TipoUso(models.Model):
+    uso = models.CharField(max_length=20)
+
+
+class Modelo(models.Model):
+    marca = models.ForeignKey(Marca, on_delete=models.PROTECT)
+    modelo = models.CharField(max_length=45)
+    anio = models.DateField()
+    tipo_v = models.ForeignKey(TipoVehiculo, on_delete=models.CASCADE, default=True)
     def __str__(self):
-        return self.nombre
+        return f'marca: {self.marca}, modelo: {self.modelo}, año: {self.anio}, tipo: {self.tipo_v}'
+
 
 class Seguro(models.Model):
     nombre = models.CharField(max_length=50)
     num_poliza = models.IntegerField()
     tel = models.IntegerField()
     tel_emergencia = models.IntegerField()
-    tipo = models.ForeignKey(TipoSeguro, on_delete=models.PROTECT)    
+       
+
 
 class Cedula(models.Model):
     num_cedula = models.CharField(max_length= 45)
     patente = models.CharField(max_length= 15)
-    nombre_registro = models.CharField(max_length= 45)
+    #nombre_registro = models.CharField(max_length= 45) Habria que normalizar
     num_motor = models.IntegerField()
     vehiculo = models.ForeignKey(Modelo, on_delete=models.PROTECT)
     num_chasis = models.IntegerField()
