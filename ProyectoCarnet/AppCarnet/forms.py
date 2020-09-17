@@ -22,8 +22,9 @@ class cargarPersona(forms.ModelForm):
 
 
 class CargarCarnet(forms.Form):
-    n_carnet = forms.IntegerField(label='Ingrese su numero de carnet: ')
-    foto = forms.ImageField(label='Ingrese una foto de su carnet: ')
+    n_carnet = forms.IntegerField(label='Ingrese su numero de carnet', required=True)
+    foto = forms.ImageField(label='Ingrese una foto de su carnet', required=False)
+    donante = forms.BooleanField(label="¿Es donante?", required=False)
     otorgamiento = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
     vencimiento = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
     
@@ -38,6 +39,25 @@ class CargarCarnet(forms.Form):
     def clean_otorgamiento(self):
         otorgamiento = self.cleaned_data['otorgamiento']
         return otorgamiento
+    
+    def clean_vencimiento(self):
+        vencimiento = self.cleaned_data['vencimiento']
+        return vencimiento
+    
+    def clean_donante(self):
+        donante = self.cleaned_data['donante']
+        return donante
+
+    def save(self):
+        carn = Carnet(
+        n_carnet=self.cleaned_data['n_carnet'],
+        foto=self.cleaned_data['foto'],
+        otorgamiento=self.cleaned_data['otorgamiento'],
+        vencimiento=self.cleaned_data['vencimiento'],
+        donante=self.cleaned_data['donante'],
+        )
+        carn.save()
+        return carn
     
 class CustomUserCreationForm(forms.Form):     
     

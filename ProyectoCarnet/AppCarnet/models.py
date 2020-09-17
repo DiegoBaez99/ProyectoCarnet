@@ -30,11 +30,11 @@ class TipoCarnet(models.Model):
         return self.tipo
 
 class Carnet(models.Model):
-    n_carnet = models.IntegerField(blank=True)
+    n_carnet = models.IntegerField(primary_key=True)
     foto = models.ImageField()
     otorgamiento = models.DateField()
     vencimiento = models.DateField()
-    tipo_carnet = models.ForeignKey(TipoCarnet, on_delete=models.PROTECT)
+    tipo_carnet = models.ForeignKey(TipoCarnet, on_delete=models.PROTECT, null=True)
     donante = models.BooleanField(default=False)
     grupo_s = models.ForeignKey(GrupoSanguineo, on_delete=models.PROTECT, null=True)
     validado = models.BooleanField(default=False, blank=True)

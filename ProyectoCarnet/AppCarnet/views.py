@@ -13,7 +13,7 @@ def home(request):
 
 def signup(request):
     if request.method == 'POST':
-        f = CustomUserCreationForm(request.POST)
+        f = CustomUserCreationForm(request.POST, request.FILES)
         if f.is_valid():
             f.save()
             messages.success(request, 'Cuenta creada satisfactoriamente.')
