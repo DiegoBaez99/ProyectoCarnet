@@ -1,4 +1,4 @@
-from .models import Direcciones, Carnet
+from .models import Direcciones, Carnet, GrupoSanguineo,TipoCarnet
 from user.models import Usuario
 from django.contrib.auth.models import User
 from django import forms
@@ -21,13 +21,16 @@ class cargarPersona(forms.ModelForm):
         fields = ('first_name', 'last_name', 'dni', 'nacimiento')
 
 
+
 class CargarCarnet(forms.Form):
     n_carnet = forms.IntegerField(label='Ingrese su numero de carnet', required=True)
     foto = forms.ImageField(label='Ingrese una foto de su carnet', required=False)
-    donante = forms.BooleanField(label="¿Es donante?", required=False)
+    donante = forms.BooleanField(required=False)
     otorgamiento = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
     vencimiento = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
-    
+    grupo_s = forms.ModelChoiceField(queryset=GrupoSanguineo.objects.all(), label='Ingrese su grupo sanguineo')
+    tipo_carnet = forms.ModelChoiceField(queryset=TipoCarnet.objects.all(), label='Ingrese su tipo de carnet')
+
     def clean_n_carnet(self):
         n_carnet = self.cleaned_data['n_carnet']
         return n_carnet
@@ -47,6 +50,14 @@ class CargarCarnet(forms.Form):
     def clean_donante(self):
         donante = self.cleaned_data['donante']
         return donante
+    
+    def clean_grupo_s(self):
+        grupo_s = self.cleaned_data['grupo_s']
+        return grupo_s
+    
+    def clean_tipo_carnet(self):
+        tipo_carnet = self.cleaned_data['tipo_carnet']
+        return tipo_carnet
 
     def save(self):
         carn = Carnet(
@@ -55,6 +66,8 @@ class CargarCarnet(forms.Form):
         otorgamiento=self.cleaned_data['otorgamiento'],
         vencimiento=self.cleaned_data['vencimiento'],
         donante=self.cleaned_data['donante'],
+        grupo_s = self.cleaned_data['grupo_s'],
+        tipo_carnet = self.cleaned_data['tipo_carnet']
         )
         carn.save()
         return carn

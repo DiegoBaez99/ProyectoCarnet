@@ -1,9 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
 {% block title %}
     Cargar carnet
 {% endblock %}
 
 {% block content %}
-    
+    <style>
+        #n_carnet {
+            color: black;
+        }
+    </style>
      <div class="carnet">
          {% if messages %}
             <ul>
@@ -26,4 +32,4 @@
          </form>
      </div>
 
-{% endblock %}
+{% endblock content%}

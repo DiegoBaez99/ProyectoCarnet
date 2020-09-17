@@ -25,7 +25,7 @@ class Nacionalidad(models.Model):
 
 
 class TipoCarnet(models.Model):
-    tipo = models.CharField(max_length=4)
+    tipo = models.CharField(max_length=5)
     def __str__(self):
         return self.tipo
 

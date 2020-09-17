@@ -50,7 +50,7 @@ def logout(request):
 
 def carnet(request):
     if request.method == 'POST':
-        f = CargarCarnet(request.POST)
+        f = CargarCarnet(request.POST, request.FILES)
         if f.is_valid():
             f.save()
             messages.success(request, 'Carnet creado satisfactoriamente.')
