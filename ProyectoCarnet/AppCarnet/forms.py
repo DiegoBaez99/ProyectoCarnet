@@ -120,8 +120,8 @@ class CargarCedula(forms.Form):
     uso = forms.ModelChoiceField(label="Ingrese el tipo de uso del vehiculo", queryset=TipoUso.objects.all())
     num_motor = forms.CharField(label='Ingrese el numero de motor', max_length=25)
     num_chasis = forms.CharField(label="Ingrese el numero de chasis", max_length=25)
-    emision = forms.DateField(label="Fecha de emision")
-    vencimiento = forms.DateField(label="Fecha de vencimiento")
+    emision = forms.DateField(label="Fecha de emision", widget=forms.DateInput(attrs={'type': 'date'}))
+    vencimiento = forms.DateField(label="Fecha de vencimiento", widget=forms.DateInput(attrs={'type': 'date'}))
     seguro = forms.ModelChoiceField(label="Ingrese el seguro", queryset=Seguro.objects.all())
 
     def save(self):
