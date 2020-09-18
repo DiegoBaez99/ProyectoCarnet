@@ -30,9 +30,13 @@
               <div class="inner">
                 <h2>Menu</h2>
                 <ul class="links">
-                  <li><a href="{% url 'home' %}">Inicio</a></li>
+				  <li><a href="{% url 'home' %}">Inicio</a></li>
+				  {% if user.is_authenticated %}
+				  <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
+				  {% else %}
                   <li><a href="{% url 'login' %}">Iniciar Sesión</a></li>
-                  <li><a href="{% url 'signup' %}">Registrate</a></li>
+				  <li><a href="{% url 'signup' %}">Registrate</a></li>
+				  {% endif %}
                 </ul>
                 <a href="#" class="close">Cerrar</a>
               </div>
