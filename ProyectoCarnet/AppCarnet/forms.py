@@ -1,4 +1,4 @@
-from .models import Direcciones, Carnet
+from .models import Direcciones, Carnet, GrupoSanguineo,TipoCarnet,Marca,Modelo,TipoUso,Seguro, Cedula
 from user.models import Usuario
 from django.contrib.auth.models import User
 from django import forms
@@ -21,23 +21,22 @@ class cargarPersona(forms.ModelForm):
         fields = ('first_name', 'last_name', 'dni', 'nacimiento')
 
 
-class CargarCarnet(forms.Form):
-    n_carnet = forms.IntegerField(label='Ingrese su numero de carnet: ')
-    foto = forms.ImageField(label='Ingrese una foto de su carnet: ')
+class CarnetForm(forms.ModelForm):
     otorgamiento = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
     vencimiento = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
-    
-    def clean_n_carnet(self):
-        n_carnet = self.cleaned_data['n_carnet']
-        return n_carnet
-
-    def clean_foto(self):
-        foto = self.cleaned_data['foto']
-        return foto
-    
-    def clean_otorgamiento(self):
-        otorgamiento = self.cleaned_data['otorgamiento']
-        return otorgamiento
+    class Meta:
+        model = Carnet
+        fields = ['n_carnet', 'foto', 'donante', 'otorgamiento', 'vencimiento', 'grupo_s', 'tipo_carnet']
+        labels = {
+            'n_carnet': "Ingrese el numero de carnet",
+            'foto': "Ingrese una foto del carnet",
+            'donante': "¿Es donante?",
+            'otorgamiento': "Ingrese la fecha de otorgamiento",
+            'vencimiento': "Ingrese la fecha de vencimiento",
+            'grupo_s': "Ingrese seu grupo sanguineo",
+            'tipo_carnet': "Ingrese su tipo de carnet",
+        }
+        
     
 class CustomUserCreationForm(forms.Form):     
     
@@ -78,28 +77,23 @@ class CustomUserCreationForm(forms.Form):
         )
         return user
 
-
-
-
-
-
-"""class CreateUserForm(forms.ModelForm):
-    email = forms.EmailField(required=True, label='Email',error_messages={'exists': 'This already exists!'})
-    password1 = forms.CharField(max_length=30)
-    password2 = forms.CharField(max_length=30)
-
+class CedulaForm(forms.ModelForm):
+    emision = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
+    vencimiento = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
     class Meta:
-        model = Usuario
-        fields = ('username', 'email', 'password1', 'password2')
+        model = Cedula
+        fields = ['num_cedula', 'patente', 'marca', 'modelo', 'uso', 'num_motor', 'num_chasis', 'emision', 'vencimiento', 'seguro']
 
-    def save(self, commit=True):
-        user = super(CreateUserForm, self).save(commit=False)
-        user.email = self.cleaned_data['email']
-        if commit:
-            user.save()
-        return user
+        labels = {
+            'num_cedula': "Ingrese el numero de cedula",
+            'patente': "Ingrese la patente",
+            'marca': "Seleccione la marca",
+            'modelo': "Seleccione el modelo",
+            'uso': "Seleccione el uso",
+            'num_motor': "Ingrese el numero de motor",
+            'num_chasis': "Ingrese el numero de chasis",
+            'emision': "Ingrese la fecha de emision",
+            'vencimiento': "Ingrese el vencimiento",
+            'seguro': "Seleccione el seguro"
+        }
 
-    def clean_email(self):
-        if User.objects.filter(email=self.cleaned_data['email']).exists():
-            raise forms.ValidationError(self.fields['email'].error_messages['exists'])
-        return self.cleaned_data['email']"""
