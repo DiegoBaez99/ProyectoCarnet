@@ -21,56 +21,22 @@ class cargarPersona(forms.ModelForm):
         fields = ('first_name', 'last_name', 'dni', 'nacimiento')
 
 
-
-class CargarCarnet(forms.Form):
-    n_carnet = forms.IntegerField(label='Ingrese su numero de carnet', required=True)
-    foto = forms.ImageField(label='Ingrese una foto de su carnet', required=False)
-    donante = forms.BooleanField(required=False)
+class CarnetForm(forms.ModelForm):
     otorgamiento = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
     vencimiento = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
-    grupo_s = forms.ModelChoiceField(queryset=GrupoSanguineo.objects.all(), label='Ingrese su grupo sanguineo')
-    tipo_carnet = forms.ModelChoiceField(queryset=TipoCarnet.objects.all(), label='Ingrese su tipo de carnet')
-
-    def clean_n_carnet(self):
-        n_carnet = self.cleaned_data['n_carnet']
-        return n_carnet
-
-    def clean_foto(self):
-        foto = self.cleaned_data['foto']
-        return foto
-    
-    def clean_otorgamiento(self):
-        otorgamiento = self.cleaned_data['otorgamiento']
-        return otorgamiento
-    
-    def clean_vencimiento(self):
-        vencimiento = self.cleaned_data['vencimiento']
-        return vencimiento
-    
-    def clean_donante(self):
-        donante = self.cleaned_data['donante']
-        return donante
-    
-    def clean_grupo_s(self):
-        grupo_s = self.cleaned_data['grupo_s']
-        return grupo_s
-    
-    def clean_tipo_carnet(self):
-        tipo_carnet = self.cleaned_data['tipo_carnet']
-        return tipo_carnet
-
-    def save(self):
-        carn = Carnet(
-        n_carnet=self.cleaned_data['n_carnet'],
-        foto=self.cleaned_data['foto'],
-        otorgamiento=self.cleaned_data['otorgamiento'],
-        vencimiento=self.cleaned_data['vencimiento'],
-        donante=self.cleaned_data['donante'],
-        grupo_s = self.cleaned_data['grupo_s'],
-        tipo_carnet = self.cleaned_data['tipo_carnet']
-        )
-        carn.save()
-        return carn
+    class Meta:
+        model = Carnet
+        fields = ['n_carnet', 'foto', 'donante', 'otorgamiento', 'vencimiento', 'grupo_s', 'tipo_carnet']
+        labels = {
+            'n_carnet': "Ingrese el numero de carnet",
+            'foto': "Ingrese una foto del carnet",
+            'donante': "¿Es donante?",
+            'otorgamiento': "Ingrese la fecha de otorgamiento",
+            'vencimiento': "Ingrese la fecha de vencimiento",
+            'grupo_s': "Ingrese seu grupo sanguineo",
+            'tipo_carnet': "Ingrese su tipo de carnet",
+        }
+        
     
 class CustomUserCreationForm(forms.Form):     
     
@@ -111,31 +77,23 @@ class CustomUserCreationForm(forms.Form):
         )
         return user
 
+class CedulaForm(forms.ModelForm):
+    emision = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
+    vencimiento = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
+    class Meta:
+        model = Cedula
+        fields = ['num_cedula', 'patente', 'marca', 'modelo', 'uso', 'num_motor', 'num_chasis', 'emision', 'vencimiento', 'seguro']
 
-class CargarCedula(forms.Form):
-    num_cedula = forms.IntegerField(label="Ingrese el numero de su cedula")
-    patente = forms.CharField(label="Ingrese su patente", max_length=8)
-    marca = forms.ModelChoiceField(label="Ingrese la marca", queryset=Marca.objects.all())
-    modelo = forms.ModelChoiceField(label="Ingrese el modelo del auto", queryset=Modelo.objects.all())
-    uso = forms.ModelChoiceField(label="Ingrese el tipo de uso del vehiculo", queryset=TipoUso.objects.all())
-    num_motor = forms.CharField(label='Ingrese el numero de motor', max_length=25)
-    num_chasis = forms.CharField(label="Ingrese el numero de chasis", max_length=25)
-    emision = forms.DateField(label="Fecha de emision", widget=forms.DateInput(attrs={'type': 'date'}))
-    vencimiento = forms.DateField(label="Fecha de vencimiento", widget=forms.DateInput(attrs={'type': 'date'}))
-    seguro = forms.ModelChoiceField(label="Ingrese el seguro", queryset=Seguro.objects.all())
+        labels = {
+            'num_cedula': "Ingrese el numero de cedula",
+            'patente': "Ingrese la patente",
+            'marca': "Seleccione la marca",
+            'modelo': "Seleccione el modelo",
+            'uso': "Seleccione el uso",
+            'num_motor': "Ingrese el numero de motor",
+            'num_chasis': "Ingrese el numero de chasis",
+            'emision': "Ingrese la fecha de emision",
+            'vencimiento': "Ingrese el vencimiento",
+            'seguro': "Seleccione el seguro"
+        }
 
-    def save(self):
-        cedu = Cedula(
-        num_cedula=self.cleaned_data['num_cedula'],
-        patente=self.cleaned_data['patente'],
-        marca=self.cleaned_data['marca'],
-        modelo=self.cleaned_data['modelo'],
-        uso=self.cleaned_data['uso'],
-        num_motor = self.cleaned_data['num_motor'],
-        num_chasis = self.cleaned_data['num_chasis'],
-        emision = self.cleaned_data['emision'],
-        vencimiento = self.cleaned_data['vencimiento'],
-        seguro = self.cleaned_data['seguro']
-        )
-        cedu.save()
-        return cedu

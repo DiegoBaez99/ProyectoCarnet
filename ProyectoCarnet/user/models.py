@@ -13,6 +13,7 @@ class Usuario(AbstractUser):
     direccion = models.ForeignKey(Direcciones, on_delete=models.CASCADE, null=True)
     carnet = models.ForeignKey(Carnet, on_delete=models.CASCADE, blank=True, null=True)
     cedula = models.ForeignKey(Cedula, on_delete=models.CASCADE, blank=True, null=True)
+    
 
     def getImage(self):
         if(self.image):

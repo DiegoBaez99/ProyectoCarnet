@@ -3,13 +3,19 @@ from django.contrib import messages, auth
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate
 from django.http import HttpResponse, Http404
-from .forms import forms, CustomUserCreationForm, cargarDireccion, cargarPersona, CargarCarnet, CargarCedula
-from .models import Direcciones
+from .forms import forms, CustomUserCreationForm, cargarDireccion, cargarPersona, CarnetForm, CedulaForm
+from .models import Direcciones, Carnet, Cedula, Marca, Modelo
 from user.models import Usuario
 from django.contrib.auth.decorators import login_required
+from django.views.generic import TemplateView,CreateView
+from django.urls import reverse_lazy
+from django.http import JsonResponse
 
-def home(request):
-    return render(request, 'home.html')
+class Home(TemplateView):
+    template_name = "home.html"
+
+class Index(TemplateView):
+    template_name = "index.html"
 
 def signup(request):
     if request.method == 'POST':
@@ -48,35 +54,22 @@ def logout(request):
     auth.logout(request)
     return render(request,'logout.html')
 
-def carnet(request):
-    if request.method == 'POST':
-        f = CargarCarnet(request.POST, request.FILES)
-        if f.is_valid():
-            f.save()
-            messages.success(request, 'Carnet creado satisfactoriamente.')
-            return redirect('login')
-    else:
-        f = CargarCarnet()
+class CrearCarnet(CreateView):
+    model = Carnet
+    form_class = CarnetForm
+    template_name = 'carnet.html'
+    success_url = reverse_lazy('home')
 
-    return render(request, 'carnet.html', {'form': f})
-
-def cedula(request):
-    if request.method == 'POST':
-        f = CargarCedula(request.POST)
-        if f.is_valid():
-            f.save()
-            messages.success(request, 'Carnet creado satisfactoriamente.')
-            return redirect('login')
-    else:
-        f = CargarCedula()
-
-    return render(request, 'cedula.html', {'form': f})
-
+class CrearCedula(CreateView):
+    model = Cedula
+    form_class = CedulaForm
+    template_name = 'cedula.html'
+    success_url = reverse_lazy('home')
 
 
 def logoutUser(request):
     logout(request)
-    return redirect('login')
+    return redirect('home')
 
 def index(request):
     

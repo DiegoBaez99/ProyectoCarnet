@@ -19,16 +19,17 @@ from AppCarnet import views
 from django.contrib.auth import views as auth_views
 from django.conf import settings
 from django.conf.urls.static import static
+from AppCarnet.views import Home, CrearCarnet, CrearCedula, Index
 
 urlpatterns = [
-    path('', views.home, name='home'),
+    path('', Home.as_view(), name='home'),
     path('login/',views.login,  name='login'),
     path('logout/', views.logout, name='logout'),
     path('signup/', views.signup, name='signup'),
-    path('carnet', views.carnet, name='carnet'),
-    path('cedula', views.cedula, name='cedula'),
+    path('carnet', CrearCarnet.as_view(), name='carnet'),
+    path('cedula', CrearCedula.as_view(), name='cedula'),
     path('admin/', admin.site.urls),
-    path('index/', views.index, name='index'),
+    path('index/', Index.as_view(), name='index'),
     path('reset_password/', auth_views.PasswordResetView.as_view(template_name='reset_password/password_reset_form.html'), name='reset_password'),
     path('reset_password_sent/', auth_views.PasswordResetDoneView.as_view(template_name='reset_password/password_reset_done.html'), name='password_reset_done'),
     path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name='reset_password/password_reset_confirm.html'), name='password_reset_confirm'),
