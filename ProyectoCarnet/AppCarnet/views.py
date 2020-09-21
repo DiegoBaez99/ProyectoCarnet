@@ -46,7 +46,7 @@ def login(request):
 
 def logout(request):
     auth.logout(request)
-    return render(request,'logout.html')
+    return render(request,'home.html')
 
 def carnet(request):
     if request.method == 'POST':

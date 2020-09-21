@@ -25,7 +25,7 @@ class cargarPersona(forms.ModelForm):
 class CargarCarnet(forms.Form):
     n_carnet = forms.IntegerField(label='Ingrese su numero de carnet', required=True)
     foto = forms.ImageField(label='Ingrese una foto de su carnet', required=False)
-    donante = forms.BooleanField(required=False)
+    donante = forms.BooleanField()
     otorgamiento = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
     vencimiento = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
     grupo_s = forms.ModelChoiceField(queryset=GrupoSanguineo.objects.all(), label='Ingrese su grupo sanguineo')
