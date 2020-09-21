@@ -11,6 +11,7 @@ from django.views.generic import TemplateView,CreateView
 from django.urls import reverse_lazy
 from django.http import JsonResponse
 
+
 class Home(TemplateView):
     template_name = "home.html"
 
@@ -59,7 +60,7 @@ class CrearCarnet(CreateView):
     form_class = CarnetForm
     template_name = 'carnet.html'
     success_url = reverse_lazy('home')
-
+  
 class CrearCedula(CreateView):
     model = Cedula
     form_class = CedulaForm
