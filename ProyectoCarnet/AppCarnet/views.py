@@ -11,6 +11,7 @@ from django.views.generic import TemplateView,CreateView
 from django.urls import reverse_lazy
 from django.http import JsonResponse
 
+
 class Home(TemplateView):
     template_name = "home.html"
 
@@ -59,6 +60,17 @@ class CrearCarnet(CreateView):
     form_class = CarnetForm
     template_name = 'carnet.html'
     success_url = reverse_lazy('home')
+
+    def upload_image_view(request):
+        if request.method == 'GET':
+            form = CarnetForm(request.GET, request.FILES)
+            if form.is_valid():
+                form.save()
+                message = "Image uploaded succesfully!"
+        else:
+            form = CarnetForm()
+
+        return render('carnet.html', locals())
 
 class CrearCedula(CreateView):
     model = Cedula

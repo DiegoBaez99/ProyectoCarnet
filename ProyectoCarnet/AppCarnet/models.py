@@ -31,13 +31,17 @@ class TipoCarnet(models.Model):
 
 class Carnet(models.Model):
     n_carnet = models.IntegerField(primary_key=True)
-    foto = models.ImageField(upload_to='fotos_persona', null=True,blank=True)
+    foto = models.ImageField(upload_to='albums/images/', null = True, blank=True)
     otorgamiento = models.DateField()
     vencimiento = models.DateField()
     tipo_carnet = models.ForeignKey(TipoCarnet, on_delete=models.PROTECT, null=True)
     donante = models.BooleanField(default=False)
     grupo_s = models.ForeignKey(GrupoSanguineo, on_delete=models.PROTECT, null=True)
     validado = models.BooleanField(default=False, blank=True)
+
+    def __unicode__(self,):
+        return str(self.foto)
+    
     
 
 class Marca(models.Model):
