@@ -8,7 +8,6 @@ from django.core.exceptions import ValidationError
 
 
 
-
 class cargarDireccion(forms.ModelForm):
     class Meta:
         model = Direcciones
@@ -37,8 +36,6 @@ class CarnetForm(forms.ModelForm):
             'grupo_s': "Ingrese seu grupo sanguineo",
             'tipo_carnet': "Ingrese su tipo de carnet",
         }
-    
-
         
     
 class CustomUserCreationForm(forms.Form):     
@@ -71,7 +68,7 @@ class CustomUserCreationForm(forms.Form):
             raise ValidationError("Contraseñas no coinciden")
 
         return password2
-    
+
     def save(self, commit=True):
         user = Usuario.objects.create_user(
             self.cleaned_data['username'],
@@ -80,38 +77,9 @@ class CustomUserCreationForm(forms.Form):
         )
         return user
 
-class UsuarioForm(forms.ModelForm):
-    nacimiento = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
-    class Meta:
-        model = Usuario
-        fields = ['dni', 'nacimiento', 'image', 'nacionalidad']
-
-        labels = {
-            'dni': "Ingrese su DNI:",
-            'nacimiento': "Ingrese su fecha de nacimiento:",
-            'image': "Ingrese su imagen de usuario:",
-            'nacionalidad': "Ingrese su nacionalidad:",
-        }
-    
-        Usuario('dni', 'nacimiento', 'image', 'nacionalidad')
-
-class DireccionForm(forms.ModelForm):
-    class Meta:
-        model = Direcciones
-        fields = ['nombre', 'numero', 'piso', 'altura']
-
-        labels = {
-            'nombre': "Ingrese el nombre de su calle:",
-            'numero': "Ingrese el numero de su calle:",
-            'piso': "Ingrese piso:",
-            'altura': "Ingrese altura de su direccion:",
-        }
-
-
 class CedulaForm(forms.ModelForm):
     emision = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
     vencimiento = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
-
     class Meta:
         model = Cedula
         fields = ['num_cedula', 'patente', 'marca', 'modelo', 'uso', 'num_motor', 'num_chasis', 'emision', 'vencimiento', 'seguro']
@@ -129,15 +97,24 @@ class CedulaForm(forms.ModelForm):
             'seguro': "Seleccione el seguro"
         }
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['modelo'].queryset = Modelo.objects.none()
 
-        if 'marca' in self.data:
-            try:
-                marca_id = int(self.data.get('marca'))
-                self.fields['modelo'].queryset = Modelo.objects.filter(marca_id=marca_id).order_by('modelo')
-            except (ValueError, TypeError):
-                pass  # invalid input from the client; ignore and fallback to empty City queryset
-        elif self.instance.pk:
-            self.fields['modelo'].queryset = self.instance.marca.modelo_set.order_by('modelo')
+class SeguroForm(forms.ModelForm):
+    nombre=forms.ModelChoiceField(queryset=Seguro.objects.all())
+    emision = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
+    vencimiento = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
+    tipo_uso=forms.ModelChoiceField(queryset=TipoUso.objects.all())
+    class Meta:
+       model = Seguro
+       fields = ['nombre', 'num_poliza', 'emision', 'vencimiento','tel', 'tel_emergencia', 'tipo_uso']
+     
+       labels = {
+           'nombre': "Ingrese el nombre del seguro",
+           'num_poliza': "Ingrese el numero de poliza",
+           'emision': "Ingrese la fecha de emision",
+           'vencimiento': "Ingrese el vencimiento",
+           'tel': "Ingrese un numero de teléfono",
+           'tel_emergencia': "Ingrese un numero de teléfono de emergencia",
+           'tipo_uso': "Ingrese tipo de uso",
+           
+       }
+

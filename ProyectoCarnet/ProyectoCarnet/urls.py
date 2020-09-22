@@ -19,7 +19,7 @@ from AppCarnet import views
 from django.contrib.auth import views as auth_views
 from django.conf import settings
 from django.conf.urls.static import static
-from AppCarnet.views import Home, CrearCarnet, CrearCedula, Index, CargarUsuario
+from AppCarnet.views import Home, CrearCarnet, CrearCedula, CrearSeguro, Index
 
 urlpatterns = [
     path('', Home.as_view(), name='home'),
@@ -28,9 +28,9 @@ urlpatterns = [
     path('signup/', views.signup, name='signup'),
     path('carnet', CrearCarnet.as_view(), name='carnet'),
     path('cedula', CrearCedula.as_view(), name='cedula'),
-    path('datos', CargarUsuario.as_view(), name='datos'),
+    path('confirm/',views.confirmacion),
+    path('seguro/',CrearSeguro.as_view() ),
     path('admin/', admin.site.urls),
-    path('ajax/cargar_modelos/', views.cargar_modelos, name='ajax_cargar_modelos'),  
     path('index/', Index.as_view(), name='index'),
     path('reset_password/', auth_views.PasswordResetView.as_view(template_name='reset_password/password_reset_form.html'), name='reset_password'),
     path('reset_password_sent/', auth_views.PasswordResetDoneView.as_view(template_name='reset_password/password_reset_done.html'), name='password_reset_done'),

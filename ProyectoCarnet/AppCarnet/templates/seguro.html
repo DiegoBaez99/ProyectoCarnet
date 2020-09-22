@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+   Cargar Seguro
+{% endblock %}
+
+{% block head %}
+   <link href="{% static 'lib/select2-4.0.13/css/select2.min.css' %}" rel="stylesheet"/>
+   <link href="{% static 'lib/select2-4.0.13/css/select2-bootstrap4.min.css' %}" rel="stylesheet"/>
+   <script src="{% static 'lib/select2-4.0.13/js/select2.min.js' %}"></script>
+   <script src="{% static 'lib/select2-4.0.13/js/i18n/es.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+   
+    <div class="carnet">
+        {% if messages %}
+           <ul>
+               {% for message in messages %}
+               <li>{{ message }}</li>
+               {% endfor %}
+           </ul>
+       {% endif %}
+       <h1>Cargar Seguro</h1>
+
+        <form action="http://127.0.0.1:8000/confirm/" method="post">
+            {% csrf_token %}
+
+           <table>
+               <tbody>
+                   <tr>
+                       <th>{{ form.nombre.label }}</th>
+                       <td>{{ form.nombre }}</td>
+                   </tr>
+                   <tr>
+                       <th>{{ form.num_poliza.label }}</th>
+                       <td>{{ form.num_poliza }}</td>
+                   </tr>
+                   <tr>
+                       <th>{{ form.emision.label }}</th>
+                       <td>{{ form.emision }}</td>
+                   </tr>
+                   <tr>
+                       <th>{{ form.vencimiento.label }}</th>
+                       <td>{{ form.vencimiento }}</td>
+                   </tr>
+                   <tr>
+                       <th>{{ form.tel.label }}</th>
+                       <td>{{ form.tel }}</td>
+                   </tr>
+                   <tr>
+                       <th>{{ form.tel_emergencia.label }}</th>
+                       <td>{{ form.tel_emergencia }}</td>
+                   </tr>
+                   <tr>
+                       <th>{{ form.tipo_uso.label }}</th>
+                       <td>{{ form.tipo_uso }}</td>
+                   </tr>
+                   
+                       <td></td>
+                       <td><input type="submit" name="submit"  value="Registrar" ></td>
+
+                   </tr>
+               </tbody>
+           </table>
+        </form>
+    </div>
+   
+ 
+{% endblock content%}

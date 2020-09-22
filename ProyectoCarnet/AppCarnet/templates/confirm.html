@@ -1,0 +1,133 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>{% block title %}   {% endblock title %}</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=3.0, minimum-scale=1.0" />
+		<link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
+		<noscript><link rel="stylesheet" href="{% static 'assets/css/noscript.css' %}" /></noscript>
+		
+		<script type="text/javascript">
+			function ConfirmDemo() {
+			//Ingresamos un mensaje a mostrar
+				var mensaje = confirm("¿Seguro que quieres confirmar?");
+			//Detectamos si el usuario acepto el mensaje
+					if (mensaje) {
+						alert("¡CREADO EXTOSAMENTE!");
+						return window.location="http://127.0.0.1:8000/index/";									
+					}					
+			}
+		</script>
+		
+		<script type="text/javascript">
+			function ConfirmDemo2() {
+			//Ingresamos un mensaje a mostrar
+				var mensaje = confirm("¿Seguro que quieres cancelar?");
+			//Detectamos si el usuario acepto el mensaje
+					if (mensaje) {
+						
+						return window.history.back();					
+					}
+			}
+		</script>
+		<style >
+		
+			.center{
+				text-align: center;
+				margin: auto;
+				height: 300px;
+				width: 50%;
+				border:2px;
+				margin-top: 120px;
+				margin-bottom:70px;
+				margin-left: auto;
+				margin-right: auto;
+
+
+			}
+			
+			input[type=button] {
+			
+			 height: 80px;
+			 background-color: #4CAF50; /* Green */
+			 border: none;
+			 color: white;
+			 padding: 10px 30px;
+			 text-align: center;
+			 text-decoration: none;
+			 display: inline-block;
+			 font-size: 20px;
+			 margin: 0px 20px;
+			 transition-duration: 0.4s;
+			 cursor: pointer;
+			}
+
+			
+
+			
+		</style>
+
+		
+
+		
+</head>
+
+
+
+<body class="is-preload">
+
+	<div class="center">
+
+		<form >
+			
+				<label style="font-size: 30px">¿Desea confirmar?</label>
+				<input  type="button" onclick="ConfirmDemo()" value="SI" />
+				<input type="button" onclick="ConfirmDemo2()" value="NO" />
+			
+			
+		</form>
+	
+	</div>	
+		<!-- Page Wrapper -->
+			<div id="page-wrapper">
+
+				<!-- Header -->
+					<header id="header" class="alt">
+						<h1><a href="index.html">Solid State</a></h1>
+					
+           
+					</header>
+
+				
+					
+
+				
+				
+          {% block content%}
+          {% endblock content %} 
+        
+        	<footer>
+				<!-- Footer -->
+					<section id="footer">
+						<div class="inner">
+							
+							<ul class="copyright">
+								<li>&copy; Untitled Inc. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+							</ul>
+						</div>
+					</section>
+       		 </footer>
+			</div>
+
+		<!-- Scripts -->
+			<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+			<script src="{% static 'assets/js/jquery.scrollex.min.js' %}"></script>
+			<script src="{% static 'assets/js/browser.min.js' %}"></script>
+			<script src="{% static 'assets/js/breakpoints.min.js' %}"></script>
+			<script src="{% static 'assets/js/util.js' %}"></script>
+			<script src="{% static 'assets/js/main.js' %}"></script>
+
+	</body>
+</html>

@@ -2,8 +2,8 @@ from django.contrib import admin
 from user.models import Usuario
 
 class UsuarioAdmin(admin.ModelAdmin):
-    list_display = ('dni', 'first_name', 'last_name', 'nacimiento',)
-    #list_filter = ()
+    list_display = ('dni', 'first_name', 'last_name','grupo_s', 'nacimiento',)
+    list_filter = ('grupo_s',)
     search_fields = ('dni', 'first_name', 'last_name',)
     
 
