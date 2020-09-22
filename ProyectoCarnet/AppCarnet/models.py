@@ -12,8 +12,8 @@ class GrupoSanguineo(models.Model):
 
 class Direcciones(models.Model):
     nombre = models.CharField(max_length=50)
-    numero = models.IntegerField()
-    piso = models.CharField(max_length=25)
+    numero = models.IntegerField(blank=True)
+    piso = models.CharField(max_length=25, blank=True)
     altura = models.CharField(blank=True, null=True, max_length=20)
     def __str__(self):
         return f'{self.nombre} {self.altura} {self.numero} piso: {self.piso}'

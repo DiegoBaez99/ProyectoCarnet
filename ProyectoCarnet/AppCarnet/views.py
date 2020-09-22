@@ -3,7 +3,7 @@ from django.contrib import messages, auth
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate
 from django.http import HttpResponse, Http404
-from .forms import forms, CustomUserCreationForm, cargarDireccion, cargarPersona, CarnetForm, CedulaForm
+from .forms import forms, CustomUserCreationForm, cargarDireccion, cargarPersona, CarnetForm, CedulaForm, UsuarioForm
 from .models import Direcciones, Carnet, Cedula, Marca, Modelo
 from user.models import Usuario
 from django.contrib.auth.decorators import login_required
@@ -24,7 +24,7 @@ def signup(request):
         if f.is_valid():
             f.save()
             messages.success(request, 'Cuenta creada satisfactoriamente.')
-            return redirect('login')
+            return redirect('datos')
     else:
         f = CustomUserCreationForm()
 
@@ -55,6 +55,13 @@ def logout(request):
     auth.logout(request)
     return render(request,'logout.html')
 
+class CargarUsuario(CreateView):
+    model = Usuario
+    form_class = UsuarioForm
+    template_name = 'datos1.html'
+    success_url = reverse_lazy('carnet')
+
+
 class CrearCarnet(CreateView):
     model = Carnet
     form_class = CarnetForm
@@ -67,6 +74,10 @@ class CrearCedula(CreateView):
     template_name = 'cedula.html'
     success_url = reverse_lazy('home')
 
+def cargar_modelos(request):
+    marca_id = request.GET.get('marca')
+    modelos = Modelo.objects.filter(marca_id=marca_id).order_by('modelo')
+    return render(request, 'modelo_dropdown_list_options.html', {'modelos': modelos})
 
 def logoutUser(request):
     logout(request)
