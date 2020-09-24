@@ -1,25 +1,11 @@
-from .models import Direcciones, Carnet, GrupoSanguineo,TipoCarnet,Marca,Modelo,TipoUso,Seguro, Cedula
+from .models import Direcciones, Carnet, GrupoSanguineo,TipoCarnet,Marca,Modelo,TipoUso,Seguro, Cedula, Nacionalidad
 from user.models import Usuario
 from django.contrib.auth.models import User
 from django import forms
 from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
-
-
-
-
-class cargarDireccion(forms.ModelForm):
-    class Meta:
-        model = Direcciones
-        fields = ('nombre', 'numero', 'piso', 'altura')
-
-
-class cargarPersona(forms.ModelForm):
-
-    class Meta:
-        model = Usuario
-        fields = ('first_name', 'last_name', 'dni', 'nacimiento')
+import re
 
 
 class CarnetForm(forms.ModelForm):
@@ -43,7 +29,6 @@ class CarnetForm(forms.ModelForm):
     
 class CustomUserCreationForm(forms.Form):     
     
-
     username = forms.CharField(label='Nombre de Usuario', min_length=4, max_length=35, widget=forms.TextInput)
     email = forms.EmailField(label='Email',widget=forms.TextInput)
     password1 = forms.CharField(label='Ingrese una contraseña', widget=forms.PasswordInput)
@@ -80,20 +65,28 @@ class CustomUserCreationForm(forms.Form):
         )
         return user
 
+
 class UsuarioForm(forms.ModelForm):
+    
     nacimiento = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
     class Meta:
         model = Usuario
-        fields = ['dni', 'nacimiento', 'image', 'nacionalidad']
+        fields = ['first_name', 'last_name','dni', 'nacimiento', 'nacionalidad']
 
         labels = {
+            'first_name': "Ingrese su nombre",
+            'last_name': "Ingrese su apellido",
             'dni': "Ingrese su DNI:",
             'nacimiento': "Ingrese su fecha de nacimiento:",
-            'image': "Ingrese su imagen de usuario:",
             'nacionalidad': "Ingrese su nacionalidad:",
         }
-    
-        Usuario('dni', 'nacimiento', 'image', 'nacionalidad')
+
+    def clean_first_name(self):
+        value = self.cleaned_data.get('first_name')
+        if not re.search('^[a-zA-Z]+(?:[\s.]+[a-zA-Z]+)*$', value):
+            raise ValidationError("Solo se aceptan letras.")
+        
+        return value
 
 class DireccionForm(forms.ModelForm):
     class Meta:
