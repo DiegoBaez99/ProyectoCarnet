@@ -132,7 +132,6 @@ input, select, textarea {
 		font-size: 16.5pt;
 		font-weight: 300;
 		line-height: 1.65;
-		text-align: center;
 		
 	}
 
@@ -3266,7 +3265,7 @@ input, select, textarea {
 		-webkit-user-select: none;
 		-ms-user-select: none;
 		user-select: none;
-		-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+		-webkit-tap-highlight-color: rgba(0, 0, 0, 0.945);
 		background:linear-gradient(30deg, #4696e5,#4696e5, rgb(52, 84, 182),#4696e5, #4696e5);
 		cursor: default;
 		height: 100%;
@@ -3346,7 +3345,7 @@ input, select, textarea {
 				}
 
 					#menu .links li a:hover {
-						background:#15BDA6;
+						background:#1f257c;
 					}
 
 		@media screen and (max-width: 736px) {
@@ -4048,7 +4047,7 @@ input, select, textarea {
 		}
 
 		#footer .inner .copyright {
-			border-top: solid 2px rgba(255, 255, 255, 0.125);
+			border-top: solid 2px rgba(255, 255, 255, 0.952);
 			list-style: none;
 			margin: 4em 0 2em 0;
 			padding: 2em 0 0 0;
@@ -4057,7 +4056,7 @@ input, select, textarea {
 
 			#footer .inner .copyright li {
 				border-left: solid 2px rgba(255, 255, 255, 0.125);
-				color: rgba(255, 255, 255, 0.35);
+				color: rgba(255, 255, 255, 0.993);
 				display: inline-block;
 				font-size: 0.9em;
 				line-height: 1;
