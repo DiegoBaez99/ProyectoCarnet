@@ -1,5 +1,4 @@
-from .models import Direcciones, Carnet, GrupoSanguineo,TipoCarnet,Marca,Modelo,TipoUso,Seguro, Cedula, Nacionalidad
-from user.models import Usuario
+from user.models import Direcciones, Carnet, GrupoSanguineo,TipoCarnet,Marca,Modelo,TipoUso,Seguro, Cedula, Nacionalidad, Usuario
 from django.contrib.auth.models import User
 from django import forms
 from django.forms import ModelForm
@@ -9,6 +8,7 @@ import re
 
 
 class CarnetForm(forms.ModelForm):
+    foto = forms.ImageField()
     otorgamiento = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
     vencimiento = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
     class Meta:
@@ -23,7 +23,7 @@ class CarnetForm(forms.ModelForm):
             'grupo_s': "Ingrese seu grupo sanguineo",
             'tipo_carnet': "Ingrese su tipo de carnet",
         }
-    
+
 
         
     
@@ -71,13 +71,14 @@ class UsuarioForm(forms.ModelForm):
     nacimiento = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
     class Meta:
         model = Usuario
-        fields = ['first_name', 'last_name','dni', 'nacimiento', 'nacionalidad']
+        fields = ['first_name', 'last_name','dni', 'nacimiento','phone', 'nacionalidad']
 
         labels = {
             'first_name': "Ingrese su nombre",
             'last_name': "Ingrese su apellido",
             'dni': "Ingrese su DNI:",
             'nacimiento': "Ingrese su fecha de nacimiento:",
+            'phone': "Ingrese su numero de telefono",
             'nacionalidad': "Ingrese su nacionalidad:",
         }
 
@@ -104,10 +105,10 @@ class DireccionForm(forms.ModelForm):
 class CedulaForm(forms.ModelForm):
     emision = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
     vencimiento = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
-
+    
     class Meta:
         model = Cedula
-        fields = ['num_cedula', 'patente', 'marca', 'modelo', 'uso', 'num_motor', 'num_chasis', 'emision', 'vencimiento', 'seguro']
+        fields = ['num_cedula', 'patente', 'marca', 'modelo', 'uso', 'num_motor', 'num_chasis', 'emision', 'vencimiento']
 
         labels = {
             'num_cedula': "Ingrese el numero de cedula",
@@ -118,8 +119,7 @@ class CedulaForm(forms.ModelForm):
             'num_motor': "Ingrese el numero de motor",
             'num_chasis': "Ingrese el numero de chasis",
             'emision': "Ingrese la fecha de emision",
-            'vencimiento': "Ingrese el vencimiento",
-            'seguro': "Seleccione el seguro"
+            'vencimiento': "Ingrese el vencimiento"
         }
 
     def __init__(self, *args, **kwargs):

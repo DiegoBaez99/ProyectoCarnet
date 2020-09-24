@@ -4,8 +4,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import authenticate
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from .forms import forms, CustomUserCreationForm, CarnetForm, CedulaForm, UsuarioForm, DireccionForm
-from .models import Direcciones, Carnet, Cedula, Marca, Modelo
-from user.models import Usuario
+from user.models import Usuario, Direcciones, Carnet, Cedula, Marca, Modelo
 from django.contrib.auth.decorators import login_required
 from django.views.generic import TemplateView,CreateView, FormView
 from django.urls import reverse_lazy
@@ -62,7 +61,26 @@ class CrearCarnet(CreateView):
     form_class = CarnetForm
     template_name = 'carnet.html'
     success_url = reverse_lazy('home')
-  
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        current_user = self.request.user
+        self.object.user_id = current_user.id
+        self.object.save()
+        current_user.save()
+        return HttpResponseRedirect(self.success_url)
+
+class CrearCedula(CreateView):
+    model = Cedula
+    form_class = CedulaForm
+    template_name = 'cedula.html'
+    success_url = reverse_lazy('home')
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        current_user = self.request.user
+        self.object.user_id = current_user.id
+        self.object.save()
+        current_user.save()
+        return HttpResponseRedirect(self.success_url)
 
 def cargar_modelos(request):
     marca_id = request.GET.get('marca')
@@ -84,6 +102,7 @@ class DatosPersonales(SessionWizardView):
         current_user.last_name = user.last_name
         current_user.dni = user.dni
         current_user.nacimiento = user.nacimiento
+        current_user.phone = user.phone
         current_user.nacionalidad = user.nacionalidad
     
         form_address = next(forms)

@@ -1,6 +1,5 @@
 from django.contrib import admin
-from .models import *
-from user.models import Usuario
+from user.models import *
 
 def validar_carnet(modeladmin, request, queryset):
         queryset.update(validado=True)
@@ -47,8 +46,6 @@ class SeguroAdmin(admin.ModelAdmin):
     list_display = ('num_poliza', 'nombre', 'tel', 'tel_emergencia')
 class CedulaAdmin(admin.ModelAdmin):
     pass
-
-
 
 
 
