@@ -50,7 +50,7 @@ class Carnet(models.Model):
     donante = models.BooleanField(default=False)
     grupo_s = models.ForeignKey(GrupoSanguineo, on_delete=models.PROTECT, null=True)
     validado = models.BooleanField(default=False, blank=True)
-    user = models.ForeignKey(Usuario, on_delete=models.CASCADE, blank=True, null=True)
+    user = models.ForeignKey(Usuario, on_delete=models.CASCADE, blank=True, null=True, related_name='users')
 
 class Marca(models.Model):
     nombre = models.CharField(max_length=45)

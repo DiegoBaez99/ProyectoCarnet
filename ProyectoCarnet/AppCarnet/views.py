@@ -6,10 +6,12 @@ from django.http import HttpResponse, Http404, HttpResponseRedirect
 from .forms import forms, CustomUserCreationForm, CarnetForm, CedulaForm, UsuarioForm, DireccionForm
 from user.models import Usuario, Direcciones, Carnet, Cedula, Marca, Modelo
 from django.contrib.auth.decorators import login_required
-from django.views.generic import TemplateView,CreateView, FormView
+from django.views.generic import TemplateView,CreateView, FormView, ListView, DetailView
 from django.urls import reverse_lazy
 from django.http import JsonResponse
 from formtools.wizard.views import SessionWizardView
+from django.views.decorators.http import require_http_methods
+
 
 
 
@@ -112,6 +114,33 @@ class DatosPersonales(SessionWizardView):
 
         return HttpResponseRedirect('/index')
 
+class ValidarCarnets(ListView):
+    model = Carnet
+    template_name = 'validar-carnets.html'
+    context_object_name = 'carnets'
+    queryset = Carnet.objects.exclude(validado=1)
+    #paginate_by = 5
+
+class ValidarCarnet(DetailView):
+    model = Carnet
+    template_name = 'validar-carnet.html'
+    def get_context_data(self, *args, **kwargs): 
+        context = super(ValidarCarnet, self).get_context_data(*args, **kwargs) 
+        # add extra field
+        context["carnet"] = Carnet.objects.filter(pk=self.object.pk) 
+        return context
+
+@require_http_methods(['POST'])
+def validated_carnet(request):
+    carnet_id = request.POST['carnet_id'] #obtenemos el id del carnet a traves del input oculto
+    carnet = Carnet.objects.get(pk=carnet_id) #obtenemos del modelo el carnet con el id pasado
+    if request.POST.get('validar'):
+        carnet.validado = True
+    else:
+        carnet.validado = False
+    carnet.save()
+    #context = {'validado': True}
+    return redirect('validar-carnets')
 
 
 def logoutUser(request):
@@ -119,5 +148,4 @@ def logoutUser(request):
     return redirect('home')
 
 def index(request):
-    
-    return render(request,'index.html')
+    return render(request, 'index.html')

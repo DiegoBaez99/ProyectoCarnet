@@ -19,7 +19,7 @@ from AppCarnet import views
 from django.contrib.auth import views as auth_views
 from django.conf import settings
 from django.conf.urls.static import static
-from AppCarnet.views import Home, CrearCarnet, Index, DatosPersonales, CrearCedula
+from AppCarnet.views import Home, CrearCarnet, Index, DatosPersonales, CrearCedula, ValidarCarnets, ValidarCarnet
 from AppCarnet.forms import UsuarioForm, DireccionForm
 
 urlpatterns = [
@@ -30,7 +30,10 @@ urlpatterns = [
     path('carnet/', CrearCarnet.as_view(), name='carnet'),
     path('cedula/', CrearCedula.as_view(), name='cedula'),
     path('datos-personales/', DatosPersonales.as_view([UsuarioForm, DireccionForm]), name='datos-personales'),
+    path('validar-carnets/', ValidarCarnets.as_view(), name='validar-carnets'),
+    path('validar-carnets/<int:pk>/', ValidarCarnet.as_view(), name='validar-carnet'),
     path('done/', DatosPersonales.as_view(), name='done'),
+    path('validated_carnet', views.validated_carnet, name='validated_carnet'),
     path('admin/', admin.site.urls),
     path('ajax/cargar_modelos/', views.cargar_modelos, name='ajax_cargar_modelos'),  
     path('index/', Index.as_view(), name='index'),
