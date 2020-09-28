@@ -7,22 +7,24 @@ import re
 
 
 class CarnetForm(forms.ModelForm):
-    CHOICES = (('True', 'Si'),('False', 'No'),)
-    foto = forms.ImageField()
+    CHOICES = (('True', 'Si'),('False', 'No'),)    
     otorgamiento = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
     vencimiento = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
     donante = forms.ChoiceField(choices=CHOICES)
+    foto_frente = forms.ImageField(required = False)
+    foto_atras = forms.ImageField(required = False)
     class Meta:
         model = Carnet
-        fields = ['n_carnet', 'foto', 'donante', 'otorgamiento', 'vencimiento', 'grupo_s', 'tipo_carnet']
+        fields = ['n_carnet', 'donante', 'otorgamiento', 'vencimiento', 'grupo_s', 'tipo_carnet','foto_frente', 'foto_atras']
         labels = {
-            'n_carnet': "Ingrese el numero de carnet",
-            'foto': "Ingrese una foto del carnet",
+            'n_carnet': "Ingrese el numero de carnet",            
             'donante': "¿Es donante?",
             'otorgamiento': "Ingrese la fecha de otorgamiento",
             'vencimiento': "Ingrese la fecha de vencimiento",
             'grupo_s': "Ingrese seu grupo sanguineo",
             'tipo_carnet': "Ingrese su tipo de carnet",
+            'foto_frente': "Cargue una foto del frente de su carnet",
+            'foto_atras': "Cargue una foto de atrás de su carnet",
         }
 
 
@@ -106,10 +108,12 @@ class DireccionForm(forms.ModelForm):
 class CedulaForm(forms.ModelForm):
     emision = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
     vencimiento = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
-    
+    foto_frente = forms.ImageField(required = False)
+    foto_atras = forms.ImageField(required = False)
     class Meta:
         model = Cedula
-        fields = ['num_cedula', 'patente', 'marca', 'modelo', 'uso', 'num_motor', 'num_chasis', 'emision', 'vencimiento']
+        
+        fields = ['num_cedula', 'patente', 'marca', 'modelo', 'uso', 'num_motor', 'num_chasis', 'emision', 'vencimiento','foto_frente', 'foto_atras']
 
         labels = {
             'num_cedula': "Ingrese el numero de cedula",
@@ -120,7 +124,9 @@ class CedulaForm(forms.ModelForm):
             'num_motor': "Ingrese el numero de motor",
             'num_chasis': "Ingrese el numero de chasis",
             'emision': "Ingrese la fecha de emision",
-            'vencimiento': "Ingrese el vencimiento"
+            'vencimiento': "Ingrese el vencimiento",
+            'foto_frente': "Cargue una foto del frente de su carnet",
+            'foto_atras': "Cargue una foto de atrás de su carnet",
         }
 
     def __init__(self, *args, **kwargs):

@@ -44,8 +44,7 @@ class Usuario(AbstractUser):
         return '{}{}'.format(STATIC_URL, 'img/empty.png')
 
 class Carnet(models.Model):
-    n_carnet = models.IntegerField()
-    foto = models.ImageField(upload_to='media/', null=True,blank=True)
+    n_carnet = models.IntegerField()    
     otorgamiento = models.DateField()
     vencimiento = models.DateField()
     tipo_carnet = models.ForeignKey(TipoCarnet, on_delete=models.PROTECT, null=True)
@@ -53,6 +52,8 @@ class Carnet(models.Model):
     grupo_s = models.ForeignKey(GrupoSanguineo, on_delete=models.PROTECT, null=True)
     validado = models.BooleanField(default=False, blank=True)
     user = models.ForeignKey(Usuario, on_delete=models.CASCADE, blank=True, null=True, related_name='users')
+    foto_frente = models.ImageField(upload_to='media/carnet/frente/', null=True,blank=True)
+    foto_atras = models.ImageField(upload_to='media/carnet/atras/', null=True,blank=True)
 
 class Marca(models.Model):
     nombre = models.CharField(max_length=45)
@@ -99,6 +100,9 @@ class Cedula(models.Model):
     marca = models.ForeignKey(Marca, on_delete=models.CASCADE, null=True)
     uso = models.ForeignKey(TipoUso, on_delete=models.CASCADE, null=True)
     user = models.ForeignKey(Usuario, on_delete=models.CASCADE, blank=True, null=True)
+    foto_frente = models.ImageField(upload_to='media/cedula/frente/', null=True,blank=True)
+    foto_atras = models.ImageField(upload_to='media/cedula/atras/', null=True,blank=True)
+
 
 
 
