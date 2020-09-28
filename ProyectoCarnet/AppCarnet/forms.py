@@ -8,9 +8,11 @@ import re
 
 
 class CarnetForm(forms.ModelForm):
+    CHOICES = (('True', 'Si'),('False', 'No'),)
     foto = forms.ImageField()
     otorgamiento = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
     vencimiento = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
+    donante = forms.ChoiceField(choices=CHOICES)
     class Meta:
         model = Carnet
         fields = ['n_carnet', 'foto', 'donante', 'otorgamiento', 'vencimiento', 'grupo_s', 'tipo_carnet']
