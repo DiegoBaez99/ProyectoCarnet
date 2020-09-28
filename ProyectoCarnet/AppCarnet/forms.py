@@ -26,10 +26,7 @@ class CarnetForm(forms.ModelForm):
             'foto_frente': "Cargue una foto del frente de su carnet",
             'foto_atras': "Cargue una foto de atrás de su carnet",
         }
-
-
-        
-    
+       
 class CustomUserCreationForm(forms.Form):     
     
     username = forms.CharField(label='Nombre de Usuario', min_length=4, max_length=35, widget=forms.TextInput)
@@ -70,8 +67,9 @@ class CustomUserCreationForm(forms.Form):
 
 
 class UsuarioForm(forms.ModelForm):
-    
     nacimiento = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
+    nacionalidad = forms.ModelChoiceField(queryset=Nacionalidad.objects.defer('cantidad_carnet'))
+
     class Meta:
         model = Usuario
         fields = ['first_name', 'last_name', 'dni', 'nacimiento', 'phone', 'nacionalidad']
