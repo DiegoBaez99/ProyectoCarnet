@@ -21,10 +21,15 @@ from django.conf import settings
 from django.conf.urls.static import static
 from AppCarnet.views import Home, CrearCarnet, Index, DatosPersonales, CrearCedula, ValidarCarnets, ValidarCarnet
 from AppCarnet.forms import UsuarioForm, DireccionForm
+#from django.contrib.auth.decorators import login_required
+#from django.contrib.admin.views.decorators import staff_member_required
+
+#path('validar-carnets/', staff_member_required(login_url="home")(ValidarCarnets.as_view()), name='validar-carnets'),
+#path('carnet/', login_required(login_url="login")(CrearCarnet.as_view()), name='carnet'),
 
 urlpatterns = [
     path('', Home.as_view(), name='home'),
-    path('login/',views.login,  name='login'),
+    path('login/', views.login,  name='login'),
     path('logout/', views.logout, name='logout'),
     path('signup/', views.signup, name='signup'),
     path('carnet/', CrearCarnet.as_view(), name='carnet'),
@@ -37,6 +42,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('ajax/cargar_modelos/', views.cargar_modelos, name='ajax_cargar_modelos'),  
     path('index/', Index.as_view(), name='index'),
+    path('population-chart/', views.population_chart, name='population-chart'),
+    path('paises-carnet', views.mostrar, name='paises-carnet'),
     path('reset_password/', auth_views.PasswordResetView.as_view(template_name='reset_password/password_reset_form.html'), name='reset_password'),
     path('reset_password_sent/', auth_views.PasswordResetDoneView.as_view(template_name='reset_password/password_reset_done.html'), name='password_reset_done'),
     path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name='reset_password/password_reset_confirm.html'), name='password_reset_confirm'),
@@ -45,3 +52,4 @@ urlpatterns = [
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

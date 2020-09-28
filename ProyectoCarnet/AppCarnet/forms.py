@@ -1,8 +1,7 @@
-from user.models import Direcciones, Carnet, GrupoSanguineo,TipoCarnet,Marca,Modelo,TipoUso,Seguro, Cedula, Nacionalidad, Usuario
-from django.contrib.auth.models import User
 from django import forms
 from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm
+from user.models import Direcciones, Carnet, GrupoSanguineo, TipoCarnet, Marca, Modelo, TipoUso,Seguro, Cedula, Nacionalidad, Usuario
 from django.core.exceptions import ValidationError
 import re
 
@@ -71,7 +70,7 @@ class UsuarioForm(forms.ModelForm):
     nacimiento = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
     class Meta:
         model = Usuario
-        fields = ['first_name', 'last_name','dni', 'nacimiento','phone', 'nacionalidad']
+        fields = ['first_name', 'last_name', 'dni', 'nacimiento', 'phone', 'nacionalidad']
 
         labels = {
             'first_name': "Ingrese su nombre",

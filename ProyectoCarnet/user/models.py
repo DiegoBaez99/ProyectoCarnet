@@ -18,9 +18,11 @@ class Direcciones(models.Model):
 
 class Nacionalidad(models.Model):
     nacionalidad = models.CharField(max_length=25, null=False)
+    cantidad_carnet = models.IntegerField(blank=True)
+    objects = models.Manager()
     def __str__(self):
         return self.nacionalidad
-
+    
 
 class TipoCarnet(models.Model):
     tipo = models.CharField(max_length=5)
