@@ -36,7 +36,7 @@ def signup(request):
 def login(request):
     #Si el usuario ya esta logueado que lo mande a la pag principal
     if request.user.is_authenticated:
-        return redirect('index')
+        return redirect('home')
 
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -46,7 +46,7 @@ def login(request):
         if user is not None:
             # correct username and password login the user
             auth.login(request, user)
-            return redirect('index')
+            return redirect('login')
 
         else:
             messages.error(request, 'Error nombre de usuario o contraseña incorrecto.')
@@ -55,7 +55,7 @@ def login(request):
 
 def logout(request):
     auth.logout(request)
-    return render(request, 'logout.html')
+    return render(request, 'home.html')
 
 
 class CrearCarnet(CreateView):

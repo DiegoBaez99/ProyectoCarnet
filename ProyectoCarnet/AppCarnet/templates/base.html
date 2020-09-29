@@ -32,6 +32,9 @@
                 <ul class="links">
 				  <li><a href="{% url 'home' %}">Inicio</a></li>
 				  {% if user.is_authenticated %}
+				  <li><a href="{% url 'home' %}">Mostrar Carnet</a></li>
+				  <li><a href="{% url 'home'%}">Mostrar Cedula</a></li>
+				  <li><a href="{% url 'home'%}">Mostrar Seguro</a></li>
 				  <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
 				  {% else %}
                   <li><a href="{% url 'login' %}">Iniciar Sesión</a></li>
