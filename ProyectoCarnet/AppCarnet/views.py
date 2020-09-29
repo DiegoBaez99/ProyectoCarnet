@@ -114,7 +114,7 @@ class DatosPersonales(SessionWizardView):
         current_user.direccion_id = address.id #mandamos el id del form direcc a user
         current_user.save() #recien ahora guardamos todos los datos del usuario
 
-        return HttpResponseRedirect('/index')
+        return HttpResponseRedirect('/')
 
 class ValidarCarnets(ListView):
     login_required = True

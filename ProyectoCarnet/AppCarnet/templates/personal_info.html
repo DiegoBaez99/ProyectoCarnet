@@ -7,8 +7,9 @@
 
 {% block content %}
     
-    <p>Paso {{ wizard.steps.step1 }} de {{ wizard.steps.count }}</p>
+    
     <form action="" method="post">{% csrf_token %}
+        <DIV ALIGN=center><h1>Cargar de datos personales</h1><DIV ALIGN=center>
     <table>
     {{ wizard.management_form }}
     {% if wizard.form.forms %}
@@ -21,11 +22,19 @@
     {% endif %}
     </table>
     {% if wizard.steps.prev %}
-    <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.first }}">{% trans "Primer pagina" %}</button>
-    <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.prev }}">{% trans "Anterior" %}</button>
+    
+    <DIV ALIGN=left><button name="wizard_goto_step" type="submit" value="{{ wizard.steps.prev }}">{% trans "Anterior" %}</button><DIV ALIGN=left>
+    
     {% endif %}
-    <input type="submit" value="{% trans 'submit' %}"/>
+  
+
+    <DIV ALIGN=center>
+        <input type="submit" value="{% trans 'siguiente' %}"/> 
+        <pre>
+    <DIV ALIGN=center>
+
+    </pre>
+    <DIV ALIGN=center> <h1>Paso {{ wizard.steps.step1 }} de {{ wizard.steps.count }}</h1><DIV ALIGN=center></DIV>
     </form>
    
 {% endblock %}
-
