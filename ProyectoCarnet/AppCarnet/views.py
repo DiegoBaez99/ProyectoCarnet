@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import authenticate
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from .forms import forms, CustomUserCreationForm, CarnetForm, CedulaForm, UsuarioForm, DireccionForm
-from user.models import Usuario, Direcciones, Carnet, Cedula, Marca, Modelo, Nacionalidad
+from user.models import Usuario, Direcciones, Carnet, Cedula, Marca, Modelo, Nacionalidad, TipoCarnet
 from django.contrib.auth.decorators import login_required
 from django.views.generic import TemplateView, CreateView, FormView, ListView, DetailView, UpdateView
 from django.urls import reverse_lazy
@@ -71,7 +71,6 @@ class CrearCarnet(CreateView):
         self.object.save()
         current_user.save()
         return HttpResponseRedirect(self.success_url)
-
 
 class CrearCedula(CreateView):
     login_required = True
@@ -146,32 +145,18 @@ def validated_carnet(request):
     #context = {'validado': True}
     return redirect('validar-carnets')
 
-"""def pie_chart(request):
-    labels = []
-    data = []
-
-    queryset = Nacionalidad.objects.order_by('nacionalidad')
-    for nac in queryset:
-        labels.append(nac.nacionalidad)
-        data.append(len(Carnet.objects.filter(user_id=nac.id)))
-
-    return render(request, 'pie_chart.html', {
-        'labels': labels,
-        'data': data,
-    })"""
 
 def mostrar(request):
     return render(request, 'pie_chart.html')
 
+#funcion para mostrar grafico de cantidad carnet por pais
 def population_chart(request):
     labels = []
     data = []
-
     queryset = Nacionalidad.objects.order_by('nacionalidad')
     for nac in queryset:
         nac.cantidad_carnet = len(Carnet.objects.filter(user_id=nac.id))
         nac.save()
-    
     queryset = Nacionalidad.objects.values('nacionalidad').annotate(cantidad_carnet=Sum('cantidad_carnet')).order_by('-cantidad_carnet') 
     for entry in queryset:
         labels.append(entry['nacionalidad'])
@@ -181,6 +166,20 @@ def population_chart(request):
         'labels': labels,
         'data': data,
     })
+
+#Funcion para mostrar la cantidad de carnet por tipo de carnet
+def tipos_carnet(request):
+    labels = []
+    data = []
+    queryset = TipoCarnet.objects.order_by('tipo')
+    for tipo in queryset:
+        labels.append(tipo.tipo)
+        data.append(len(Carnet.objects.filter(tipo_carnet_id=tipo.id)))
+    return render(request, 'tipos-carnet.html', {
+        'labels': labels,
+        'data': data,
+    })  
+
 
 def logoutUser(request):
     logout(request)
