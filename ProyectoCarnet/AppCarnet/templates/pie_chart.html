@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
- 
+{% load static %}
 {% block content %}
   <div id="container" style="width: 75%;">
-    <canvas id="population-chart" data-url="{% url 'population-chart' %}"></canvas>
+    <canvas id="population-chart" data-url="{% url 'population_chart' %}"></canvas>
   </div>
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
@@ -21,7 +21,7 @@
               labels: data.labels,
               datasets: [{
                 label: 'Carnet',
-                backgroundColor: '#6fae3f',
+                backgroundColor: 'blue',
                 data: data.data
               }]          
             },
@@ -32,7 +32,8 @@
               },
               title: {
                 display: true,
-                text: 'Carnet por nacionalidad'
+                text: 'Carnet por nacionalidad',
+                backgroundColor: 'red',
               }
             }
           });

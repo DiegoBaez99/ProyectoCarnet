@@ -127,7 +127,7 @@ input, select, textarea {
 /* Type */
 
 	body, input, select, textarea {
-		color: #ffffff;
+		color: #FFFFFF;
 		font-family: "Source Sans Pro", Helvetica, sans-serif;
 		font-size: 16.5pt;
 		font-weight: 300;
@@ -2815,7 +2815,7 @@ input, select, textarea {
 		}
 
 		table th {
-			color: #020202;
+			color: #FFFFFF;
 			font-size: 0.9em;
 			font-weight: 600;
 			padding: 0 0.75em 0.75em 0.75em;
@@ -2834,11 +2834,21 @@ input, select, textarea {
 			border-collapse: separate;
 		}
 
-			table.alt tbody tr td {
-				border: solid 1px rgba(44, 114, 244);
-				border-left-width: 0;
-				border-top-width: 0;
-			}
+		table.alt tbody tr td {
+			transition: background-color 0.2s ease-in-out;
+			background-color: rgb(52, 84, 182);
+    		border-radius: 5px;
+    		border: 0;
+    		box-shadow: inset 0 0 0 2px #0f0f0f;
+    		color: #FFFFFF !important;
+    		cursor: pointer;
+    		font-family: Raleway, Helvetica, sans-serif;
+    		font-size: 0.8em;
+    		font-weight: 700;
+    		height: 3.75em;
+    		letter-spacing: 0.1em;
+    		line-height: 3.75em;
+		}
 
 				table.alt tbody tr td:first-child {
 					border-left-width: 1px;
@@ -4223,31 +4233,20 @@ input#id_vencimiento{
 
 input#id_n_carnet{
 	-moz-appearance: none;
-	-webkit-appearance: none;
-	-ms-appearance: none;
-	appearance: none;
-	-moz-transition: background-color 0.2s ease-in-out;
-	-webkit-transition: background-color 0.2s ease-in-out;
-	-ms-transition: background-color 0.2s ease-in-out;
-	transition: background-color 0.2s ease-in-out;
-	background-color: rgb(52, 84, 182);
-	border-radius: 5px;
-	border: 0;
-	box-shadow: inset 0 0 0 2px #0f0f0f;
-	color: #FFFFFF !important;
-	cursor: pointer;
-	display: inline-block;
-	font-family: Raleway, Helvetica, sans-serif;
-	font-size: 0.8em;
-	font-weight: 700;
-	height: 3.75em;
-	letter-spacing: 0.1em;
-	line-height: 3.75em;
-	padding: 0 2.25em;
-	text-align: center;
-	text-decoration: none;
-	text-transform: uppercase;
-	white-space: nowrap;
+    -webkit-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    background: rgb(52, 84, 182);
+    border-radius: 5px;
+    border: none;
+    border: solid 2px #0A0A0A;
+    color: #FFFFFF;
+    display: block;
+    outline: 0;
+    padding: 0 1em;
+    text-decoration: none;
+    width: 100%;
+    font-weight: bold;
 }
 
 input#id_foto{
@@ -4331,7 +4330,7 @@ input#id_num_cedula{
 	letter-spacing: 0.1em;
 	line-height: 3.75em;
 	padding: 0 2.25em;
-	text-align: center;
+	text-align: start;
 	text-decoration: none;
 	text-transform: uppercase;
 	white-space: nowrap;
@@ -4366,45 +4365,38 @@ input.cargarcarnet{
 	white-space: nowrap;
 }
 
-/* Centra el input personalizado con el texto */
-.custom-radio-checkbox {
-    display: inline-flex;
-    align-items: center;
-    cursor: pointer;
-    font-family: arial;
+input#id_num_motor{
+	-moz-appearance: none;
+    -webkit-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    background: rgb(52, 84, 182);
+    border-radius: 5px;
+    border: none;
+    border: solid 2px #0A0A0A;
+    color: #FFFFFF;
+    display: block;
+    outline: 0;
+    padding: 0 1em;
+    text-decoration: none;
+    width: 100%;
+    font-weight: bold;
 }
 
-/* Modificador para dar la imagen de checkbox */
-.custom-radio-checkbox__show--checkbox {
-    background-image: url(../../images/radio-uncheck.jpg);
+input#id_num_chasis{
+	-moz-appearance: none;
+    -webkit-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    background: rgb(52, 84, 182);
+    border-radius: 5px;
+    border: none;
+    border: solid 2px #0A0A0A;
+    color: #FFFFFF;
+    display: block;
+    outline: 0;
+    padding: 0 1em;
+    text-decoration: none;
+    width: 100%;
+    font-weight: bold;
 }
-
-/* Modificador para dar la imagen de radio */
-.custom-radio-checkbox__show--radio {
-    background-image: url(../../images/radio-uncheck.jpg);
-}
-
-/* Oculta input original */
-.custom-radio-checkbox > .custom-radio-checkbox__input {
-    display: none;
-}
-
-/* Radio personalizado usando <span> */
-.custom-radio-checkbox > .custom-radio-checkbox__show {
-    display: inline-block;
-    width: 15px;
-    height: 15px;
-    margin-right: .5rem;
-    background-size: cover;
-}
-
-/* Cambia el checkbox personalizado cuando es pulsado */
-.custom-radio-checkbox > .custom-radio-checkbox__input:checked + .custom-radio-checkbox__show--checkbox {
-    background-image: url(../../images/radio-check.png);
-}
-
-/* Cambia el radio personalizado cuando es pulsado */
-.custom-radio-checkbox > .custom-radio-checkbox__input:checked + .custom-radio-checkbox__show--radio {
-    background-image: url(../../images/radio-check.png);
-}
-
