@@ -16,7 +16,7 @@
         {% endif %}
         
 
-        <form method="post" enctype="multipart/form-data">
+        <form method="POST" enctype="multipart/form-data">
             <DIV ALIGN=center><h1>Cargar carnet</h1><DIV ALIGN=center>
             {% csrf_token %}
             <table>
@@ -29,6 +29,8 @@
             </table>
         </form>
     </div>
+
+   
 
 {% endblock content%}
 

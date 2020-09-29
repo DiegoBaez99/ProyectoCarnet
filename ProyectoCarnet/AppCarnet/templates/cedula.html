@@ -15,8 +15,9 @@
             {% endfor %}
         </ul>
         {% endif %}
-        <DIV ALIGN=center><h1>Cargar Cedula</h1><DIV ALIGN=center>
+        
         <form method="post" id="cedulaForm" data-modelos-url="{% url 'ajax_cargar_modelos' %}" novalidate>
+            <DIV ALIGN=center><h1>Cargar Cedula</h1><DIV ALIGN=center>
             {% csrf_token %}
             <table>
                 {{ form.as_table }}
@@ -26,6 +27,17 @@
                 </tr>
             </table>
         </form>
+    </div>
+
+    <div id="capa">
+        <div>
+            <div class="title">Confirmar el envío del formulario</div>
+            <div class="text">¿Desea continuar?</div>
+            <div class="buttons">
+            <button class="button button1"  id="ok">Confirmar</button>
+            <button  class="button button2"  id="ko">Cancelar</button>
+            </div>
+        </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>

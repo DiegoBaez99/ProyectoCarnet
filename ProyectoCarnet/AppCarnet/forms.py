@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm
-from user.models import Direcciones, Carnet, GrupoSanguineo, TipoCarnet, Marca, Modelo, TipoUso,Seguro, Cedula, Nacionalidad, Usuario
+from user.models import Direcciones, Carnet, GrupoSanguineo, TipoCarnet, Marca, Modelo, TipoUso,Seguro, Cedula, Nacionalidad, Usuario, Seguro
 from django.core.exceptions import ValidationError
 import re
 
@@ -196,3 +196,17 @@ class CedulaForm(forms.ModelForm):
                 pass  # invalid input from the client; ignore and fallback to empty City queryset
         elif self.instance.pk:
             self.fields['modelo'].queryset = self.instance.marca.modelo_set.order_by('modelo')
+
+class SeguroForm(forms.ModelForm):
+    nombre=forms.ModelChoiceField(queryset=Seguro.objects.all())    
+    class Meta:
+       model = Seguro
+       fields = ['nombre', 'num_poliza','tel', 'tel_emergencia']
+     
+       labels = {
+           'nombre': "Ingrese el nombre del seguro",
+           'num_poliza': "Ingrese el numero de poliza",
+           'tel': "Ingrese un numero de teléfono",
+           'tel_emergencia': "Ingrese un numero de teléfono de emergencia",          
+           
+       }

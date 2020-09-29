@@ -19,7 +19,7 @@ from AppCarnet import views
 from django.contrib.auth import views as auth_views
 from django.conf import settings
 from django.conf.urls.static import static
-from AppCarnet.views import Home, CrearCarnet, Index, DatosPersonales, CrearCedula, ValidarCarnets, ValidarCarnet
+from AppCarnet.views import Home, CrearCarnet, Index, DatosPersonales, CrearCedula, ValidarCarnets, ValidarCarnet, CrearSeguro
 from AppCarnet.forms import UsuarioForm, DireccionForm
 #from django.contrib.auth.decorators import login_required
 #from django.contrib.admin.views.decorators import staff_member_required
@@ -44,6 +44,8 @@ urlpatterns = [
     path('population-chart/', views.population_chart, name='population_chart'),
     path('paises-carnet/', views.mostrar, name='paises-carnet'),
     path('tipos-carnet/', views.tipos_carnet, name='tipos-carnet'),
+    path('mostrar-seguro/',views.mostrarSeguro, name='mostrat-seguro'),
+    path('seguro/',CrearSeguro.as_view(), name='seguro'),
     path('reset_password/', auth_views.PasswordResetView.as_view(template_name='reset_password/password_reset_form.html'), name='reset_password'),
     path('reset_password_sent/', auth_views.PasswordResetDoneView.as_view(template_name='reset_password/password_reset_done.html'), name='password_reset_done'),
     path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name='reset_password/password_reset_confirm.html'), name='password_reset_confirm'),

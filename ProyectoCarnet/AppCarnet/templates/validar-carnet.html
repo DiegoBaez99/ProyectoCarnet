@@ -29,13 +29,14 @@
 		<div class="container">
 			<h4><b>{{object.user.last_name}} {{object.user.first_name}}</b></h4> 
 			<p>Numero de carnet: {{object.n_carnet}}</p>
-			<p>DNI: {{object.user.dni}}</p>
-			<p>Imagen: <img src="{{object.foto.url}}" alt="Foto del carnet"></p>
+			<p>DNI: {{object.user.dni}}</p>			
 			<p>Fecha de otorgamiento de carnet: {{object.otorgamiento}}</p>
 			<p>Numero de vencimiento de carnet: {{object.vencimiento}}</p>
 			<p>Tipo de carnet: {{object.tipo_carnet}}</p>
 			<p>Grupo Sanguineo: {{object.grupo_s}}</p>
-			<p>Direccion: {{object.user.direccion.nombre}} - {{object.user.direccion.numero}} - {{object.user.direccion.altura}}</p>      
+			<p>Direccion: {{object.user.direccion.nombre}} - {{object.user.direccion.numero}} - {{object.user.direccion.altura}}</p>
+			<p>Imagen - Frente: <img src="{{object.foto_frente.url}}" alt="Foto del Frente"></p>
+			<p>Imagen - Atras: <img src="{{object.foto_atras.url}}" alt="Foto de Atras"></p>      
 		  </div>
 		  <input type="hidden" value="{{object.id}}" name="carnet_id">
 		  <div>

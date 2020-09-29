@@ -3,8 +3,8 @@ from django.contrib import messages, auth
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import authenticate
 from django.http import HttpResponse, Http404, HttpResponseRedirect
-from .forms import forms, CustomUserCreationForm, CarnetForm, CedulaForm, UsuarioForm, DireccionForm
-from user.models import Usuario, Direcciones, Carnet, Cedula, Marca, Modelo, Nacionalidad, TipoCarnet
+from .forms import forms, CustomUserCreationForm, CarnetForm, CedulaForm, UsuarioForm, DireccionForm, SeguroForm
+from user.models import Usuario, Direcciones, Carnet, Cedula, Marca, Modelo, Nacionalidad, TipoCarnet, Seguro, TipoUso
 from django.contrib.auth.decorators import login_required
 from django.views.generic import TemplateView, CreateView, FormView, ListView, DetailView, UpdateView
 from django.urls import reverse_lazy
@@ -180,10 +180,18 @@ def tipos_carnet(request):
         'data': data,
     })  
 
+class CrearSeguro(CreateView):
+    model = Seguro
+    form_class = SeguroForm
+    template_name = 'seguro.html'
+    success_url = reverse_lazy('home')
+
+def mostrarSeguro(request):
+    seguro=Seguro.objects.all()
+    tipo_uso=TipoUso.objects.all()
+    return render(request,'mostrarSeguro.html',{'seguro':seguro,'tipo_uso':tipo_uso})
 
 def logoutUser(request):
     logout(request)
     return redirect('home')
 
-def index(request):
-    return render(request, 'index.html')
