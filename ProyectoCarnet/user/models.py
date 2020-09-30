@@ -43,7 +43,7 @@ class Usuario(AbstractUser):
 
 class Carnet(models.Model):
     n_carnet = models.IntegerField()
-    foto = models.ImageField(upload_to='media/', null=True,blank=True)
+    
     otorgamiento = models.DateField()
     vencimiento = models.DateField()
     tipo_carnet = models.ForeignKey(TipoCarnet, on_delete=models.PROTECT, null=True)

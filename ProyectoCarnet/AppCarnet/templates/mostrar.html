@@ -17,17 +17,18 @@
                     </center>
                 </div>
                  <div class="header">                          
-                        <p class="label">Apellido: {{request.user.last_name}}</p>                
-                        <p class="label">Nombre: {{request.user.first_name}}</p>
-                        <p class="label">Fecha de nac: {{request.user.nacimiento}}</p>
+                        <p class="label">Apellido: {{carnet.user.last_name}}</p>                
+                        <p class="label">Nombre: {{carnet.user.first_name}}</p>
+                        <p class="label">Fecha de nac: {{carnet.user.nacimiento}}</p>
+                        <p class="label">Domicilio: {{carnet.user.direccion.nombre}} - {{carnet.user.direccion.numero}} - {{carnet.user.direccion.piso}} - {{carnet.user.direccion.altura}}</p>
                     </div>
                     <div class=" datos">   
-                        <p class="label">Número de carnet : {{request.user.n_carnet}}</p>
-                        <p class="label">Tipo: {{request.user.tipo_carnet}}</p>
-                        <p class="label">Otorgamiento: {{request.user.otorgamiento}}</p> 
-                        <p class="label">Vencimiento: {{request.user.vencimiento}}</p>
-                        <p class="label">Nacionalidad: {{request.user.nacionalidad}}</p>
-                        
+                        <p class="label">Número de carnet : {{carnet.n_carnet}}</p>
+                        <p class="label">Tipo: {{carnet.tipo_carnet}}</p>
+                        <p class="label">Otorgamiento: {{carnet.otorgamiento}}</p> 
+                        <p class="label">Vencimiento: {{carnet.vencimiento}}</p>
+                        <p class="label">Nacionalidad: {{carnet.user.nacionalidad}}</p>
+    
                     </div>
                 
             </div>

@@ -153,6 +153,6 @@ def index(request):
 
 def mostrar(request):
     current_user = request.user     
-    carnet = Carnet.objects.get(pk=current_user.id)
-    return render(request, 'mostrar.html',  {'carnet ' : carnet})
+    carnet = Carnet.objects.get(user_id=current_user.id)
+    return render(request, 'mostrar.html',  {'carnet':carnet})
 
