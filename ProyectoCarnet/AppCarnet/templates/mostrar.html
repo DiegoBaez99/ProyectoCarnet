@@ -10,16 +10,13 @@
         <div class ="container">
 
             <div class = "carnet-container">
-                {% for queryset in queryset %}
+                
                 <div class="titulo">
                     <center>
                         <h1>CARNET DIGITAL</h1>
                     </center>
                 </div>
-                 <div class="header">
-                    <a href="#">
-                        <img src ="usuario.jpg" >
-                    </a>          
+                 <div class="header">                          
                         <p class="label">Apellido: {{request.user.last_name}}</p>                
                         <p class="label">Nombre: {{request.user.first_name}}</p>
                         <p class="label">Fecha de nac: {{request.user.nacimiento}}</p>
@@ -32,7 +29,7 @@
                         <p class="label">Nacionalidad: {{request.user.nacionalidad}}</p>
                         
                     </div>
-                {% endfor %}
+                
             </div>
         </div>
         <div class="boton">

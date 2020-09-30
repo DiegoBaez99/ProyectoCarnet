@@ -51,13 +51,7 @@ class Carnet(models.Model):
     grupo_s = models.ForeignKey(GrupoSanguineo, on_delete=models.PROTECT, null=True)
     validado = models.BooleanField(default=False, blank=True)
     user = models.ForeignKey(Usuario, on_delete=models.CASCADE, blank=True, null=True, related_name='users')
-    #slug = models.SlugField()#devuelve la url
-
-
-    #def get_absolute_url(self):
-     #   return reverse("detail", kwargs={
-     #       'slug' : self.slug
-      #  })
+    
 
 
 class Marca(models.Model):
