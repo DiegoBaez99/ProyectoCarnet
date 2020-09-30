@@ -6,9 +6,9 @@
 
 {% block content %}
     <link rel="stylesheet" href="{% static 'css/estilo.css' %}" /></noscript>
-
+        {% for c in carnet %} 
         <div class ="container">
-
+             
             <div class = "carnet-container">
                 
                 <div class="titulo">
@@ -16,27 +16,39 @@
                         <h1>CARNET DIGITAL</h1>
                     </center>
                 </div>
+<<<<<<< HEAD
                  <div class="header">     
                         <p>Imagen: <img src="{{carnet.frente.url}}" alt="Foto del carnet"></p>                     
                         <p class="label">Apellido: {{carnet.user.last_name}}</p>                
                         <p class="label">Nombre: {{carnet.user.first_name}}</p>
                         <p class="label">Fecha de nac: {{carnet.user.nacimiento}}</p>
                         <p class="label">Domicilio: {{carnet.user.direccion.nombre}} - {{carnet.user.direccion.numero}} - {{carnet.user.direccion.piso}} - {{carnet.user.direccion.altura}}</p>
+=======
+                 <div class="header">                          
+                        <p class="label">Apellido: {{c.user.last_name}}</p>                
+                        <p class="label">Nombre: {{c.user.first_name}}</p>
+                        <p class="label">Fecha de nac: {{c.user.nacimiento}}</p>
+                        <p class="label">Domicilio: {{c.user.direccion.nombre}} - {{c.user.direccion.numero}} - {{c.user.direccion.piso}} - {{c.user.direccion.altura}}</p>
+>>>>>>> 7da4afe2e1db69b9a2175dde8c6a4bf804318552
                     </div>
                     <div class=" datos">   
-                        <p class="label">Número de carnet : {{carnet.n_carnet}}</p>
-                        <p class="label">Tipo: {{carnet.tipo_carnet}}</p>
-                        <p class="label">Otorgamiento: {{carnet.otorgamiento}}</p> 
-                        <p class="label">Vencimiento: {{carnet.vencimiento}}</p>
-                        <p class="label">Nacionalidad: {{carnet.user.nacionalidad}}</p>
-    
+                        <p class="label">Número de carnet : {{c.n_carnet}}</p>
+                        <p class="label">Tipo: {{c.tipo_carnet}}</p>
+                        <p class="label">Otorgamiento: {{c.otorgamiento}}</p> 
+                        <p class="label">Vencimiento: {{c.vencimiento}}</p>
+                        <p class="label">Nacionalidad: {{c.user.nacionalidad}}</p>
                     </div>
+<<<<<<< HEAD
                 <footer class="w3-carnet-container-w3-blue">
                     <h1>footer</h1>
                 </footer>
             
+=======
+                </div>
+                
+>>>>>>> 7da4afe2e1db69b9a2175dde8c6a4bf804318552
             </div>
-        </div>
+            {% endfor %}
         <div class="boton">
             <center>
                 <button>
