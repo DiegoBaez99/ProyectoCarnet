@@ -22,6 +22,7 @@ from django.conf.urls.static import static
 from AppCarnet.views import Home, CrearCarnet, Index, DatosPersonales, CrearCedula, ValidarCarnets, ValidarCarnet
 from AppCarnet.forms import UsuarioForm, DireccionForm
 
+
 urlpatterns = [
     path('', Home.as_view(), name='home'),
     path('login/',views.login,  name='login'),
@@ -41,6 +42,9 @@ urlpatterns = [
     path('reset_password_sent/', auth_views.PasswordResetDoneView.as_view(template_name='reset_password/password_reset_done.html'), name='password_reset_done'),
     path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name='reset_password/password_reset_confirm.html'), name='password_reset_confirm'),
     path('reset_password_complete/', auth_views.PasswordResetCompleteView.as_view(template_name='reset_password/password_reset_complete.html'), name='password_reset_complete'),
+    path('mostrar/<int:persona_id>', views.mostrar, name = 'mostrar'),
+    
+  
 ]
 
 if settings.DEBUG:

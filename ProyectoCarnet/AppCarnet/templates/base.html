@@ -32,7 +32,9 @@
                 <ul class="links">
 				  <li><a href="{% url 'home' %}">Inicio</a></li>
 				  {% if user.is_authenticated %}
-				  <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
+				  <li><a href="{% url 'logout'  %}">Cerrar Sesión</a></li>
+				  
+				  <li><a href="{% url 'mostrar' %}">Mostrar Carnet</a></li>
 				  {% else %}
                   <li><a href="{% url 'login' %}">Iniciar Sesión</a></li>
 				  <li><a href="{% url 'signup' %}">Registrate</a></li>

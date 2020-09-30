@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,get_object_or_404
 from django.contrib import messages, auth
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import authenticate
@@ -18,6 +18,7 @@ from django.views.decorators.http import require_http_methods
 class Home(TemplateView):
     template_name = "home.html"
 
+
 class Index(TemplateView):
     template_name = "index.html"
 
@@ -27,7 +28,7 @@ def signup(request):
         if f.is_valid():
             f.save()
             messages.success(request, 'Cuenta creada satisfactoriamente.')
-            return redirect('datos')
+            return redirect('personal_info')
     else:
         f = CustomUserCreationForm()
 
@@ -118,9 +119,7 @@ class ValidarCarnets(ListView):
     model = Carnet
     template_name = 'validar-carnets.html'
     context_object_name = 'carnets'
-    queryset = Carnet.objects.exclude(validado=1)
-    #paginate_by = 5
-
+    
 class ValidarCarnet(DetailView):
     model = Carnet
     template_name = 'validar-carnet.html'
@@ -149,3 +148,10 @@ def logoutUser(request):
 
 def index(request):
     return render(request, 'index.html')
+
+
+
+def mostrar(request, persona_id):
+    carnet = Carnet.objects.get(id = persona_id)
+    return render(request, 'mostrar.html',  {'carnet ' : carnet})
+
