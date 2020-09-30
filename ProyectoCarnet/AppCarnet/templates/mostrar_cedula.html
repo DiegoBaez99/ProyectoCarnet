@@ -8,33 +8,32 @@
     <link rel="stylesheet" href="{% static 'css/estilo.css' %}" /></noscript>
 
         <div class ="container">
+         
 
             <div class = "carnet-container">
                 
                 <div class="titulo">
-                    <center>
-                        <h1>CARNET DIGITAL</h1>
-                    </center>
+                    
+                        <h1>carbe
+                        
+                        </h1>
+                    
                 </div>
-                 <div class="header">     
-                        <p>Imagen: <img src="{{carnet.frente.url}}" alt="Foto del carnet"></p>                     
+                 <div class="header">                          
                         <p class="label">Apellido: {{carnet.user.last_name}}</p>                
                         <p class="label">Nombre: {{carnet.user.first_name}}</p>
                         <p class="label">Fecha de nac: {{carnet.user.nacimiento}}</p>
                         <p class="label">Domicilio: {{carnet.user.direccion.nombre}} - {{carnet.user.direccion.numero}} - {{carnet.user.direccion.piso}} - {{carnet.user.direccion.altura}}</p>
                     </div>
                     <div class=" datos">   
-                        <p class="label">Número de carnet : {{carnet.n_carnet}}</p>
-                        <p class="label">Tipo: {{carnet.tipo_carnet}}</p>
+                        <p class="label">Número de cedula : {{cedula.num_cedula}}</p>
+                        <p class="label">Patente: {{cedula.patente}}</p>
                         <p class="label">Otorgamiento: {{carnet.otorgamiento}}</p> 
                         <p class="label">Vencimiento: {{carnet.vencimiento}}</p>
                         <p class="label">Nacionalidad: {{carnet.user.nacionalidad}}</p>
     
                     </div>
-                <footer class="w3-carnet-container-w3-blue">
-                    <h1>footer</h1>
-                </footer>
-            
+                
             </div>
         </div>
         <div class="boton">

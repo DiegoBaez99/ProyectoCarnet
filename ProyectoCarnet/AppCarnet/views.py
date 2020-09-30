@@ -150,9 +150,14 @@ def index(request):
     return render(request, 'index.html')
 
 
-
 def mostrar(request):
     current_user = request.user     
     carnet = Carnet.objects.get(user_id=current_user.id)
     return render(request, 'mostrar.html',  {'carnet':carnet})
+
+
+def mostrar_cedula(request):
+    #current_user = request.user     
+    #cedula = Cedula.objects.get(user_id=current_user.id)
+    return render(request, 'mostrar_cedula.html') #,  {'cedula':cedula})
 
