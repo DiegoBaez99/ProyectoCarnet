@@ -14,14 +14,15 @@ class CarnetForm(forms.ModelForm):
     foto_frente = forms.ImageField(required = False)
     class Meta:
         model = Carnet
-        fields = ['n_carnet', 'donante', 'otorgamiento', 'vencimiento', 'grupo_s', 'tipo_carnet','foto_frente']
+        fields = ['n_carnet', 'donante', 'otorgamiento', 'vencimiento', 'grupo_s', 'tipo_carnet','imagen','foto_frente']
         labels = {
             'n_carnet': "Ingrese el numero de carnet",            
             'donante': "¿Es donante?",
             'otorgamiento': "Ingrese la fecha de otorgamiento",
             'vencimiento': "Ingrese la fecha de vencimiento",
-            'grupo_s': "Ingrese seu grupo sanguineo",
+            'grupo_s': "Ingrese su grupo sanguineo",
             'tipo_carnet': "Ingrese su tipo de carnet",
+            'imagen':"Cargue una foto suya",
             'foto_frente': "Cargue una foto del frente de su carnet",
         }
     

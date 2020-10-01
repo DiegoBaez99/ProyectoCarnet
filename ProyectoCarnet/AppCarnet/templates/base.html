@@ -31,12 +31,13 @@
                 <h2>Menu</h2>
                 <ul class="links">
 				  <li><a href="{% url 'home' %}">Inicio</a></li>
-				  {% if user.is_authenticated %}
-				  <li><a href="{% url 'home' %}">Mostrar Carnet</a></li>
+				  {% if user.is_authenticated %}				  
+				  <li><a href="{% url 'mostrar-carnet' %}">Mostrar Carnet</a></li>
 				  <li><a href="{% url 'carnet' %}">Cargar Carnet</a></li>
-				  <li><a href="{% url 'home'%}">Mostrar Cédula</a></li>
+				  <li><a href="{% url 'mostrar-cedula'%}">Mostrar Cédula</a></li>
 				  <li><a href="{% url 'cedula' %}">Cargar Cédula</a></li>
 				  <li><a href="{% url 'mostrar-seguro'%}">Mostrar Seguro</a></li>
+				  <li><a href="{% url 'datos-personales' %}">Cargar Datos Personales</a></li>
 				  <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
 				  {% else %}
                   <li><a href="{% url 'login' %}">Iniciar Sesión</a></li>

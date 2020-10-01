@@ -5,7 +5,8 @@
 {% endblock %}
 
 {% block content %}
-    <link rel="stylesheet" href="{% static 'css/estilo.css' %}" /></noscript>
+    
+    <link rel="stylesheet" href="{% static 'assets/css/estilo.css' %}" /></noscript>
         {% for c in carnet %} 
         <div class ="container">
             <div class = "carnet-container">
@@ -27,27 +28,27 @@
                      <div class=" datos">   
                         <center><h1>Republica Argentina</h1></center>
                         <div class = "fotin">
-                                <img src="{{c.foto_frente.url}}" alt="Foto del carnet"><!--direccion de la foto de entrada-->
+                                <img src="{{c.imagen.url}}" alt="Foto del carnet"><!--direccion de la foto de entrada-->
 
                         </div>
                         <p> </p>
                         <p></p>
                         <div class="abajo-fotin">
-                            <td>Donante : {{c.donante}}</td>
-                             <br class="label">Otorgamiento: {{c.otorgamiento}}</br> 
-                             <td class="label">Vencimiento: {{c.vencimiento}}</td>
-
+                            <td> Donante : {{c.donante}}</td></br>
+                            <td class="label">Otorgamiento: {{c.otorgamiento}}</td><br>
+                            <td class="resaltado" style="font-weight: 900">Vencimiento: {{c.vencimiento}}</td><br>
+                            <td class="resaltado" >DNI: {{c.user.dni}}</td>
                         </div>
                     </div>
                 </div>
             </div>                
         </div>
         {% endfor %}
-        <div class="boton">
+        <div class="volver">
             <center>
-                <button>
-                    <a href="{% url 'home'  %}">Volver</a>
-                </button>
+                <a href="{% url 'home'  %}">
+                    <input type="button" value="Volver">
+                </a>
             </center>
         </div>
 

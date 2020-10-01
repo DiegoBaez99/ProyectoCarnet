@@ -49,6 +49,7 @@ class Carnet(models.Model):
     vencimiento = models.DateField()
     tipo_carnet = models.ForeignKey(TipoCarnet, on_delete=models.PROTECT, null=True)
     donante = models.BooleanField(default=False)
+    imagen = models.ImageField(upload_to='media/carnet/user/',null=True,blank=True)
     grupo_s = models.ForeignKey(GrupoSanguineo, on_delete=models.PROTECT, null=True)
     validado = models.BooleanField(default=False, blank=True)
     user = models.ForeignKey(Usuario, on_delete=models.CASCADE, blank=True, null=True, related_name='users')

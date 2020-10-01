@@ -21,8 +21,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 from AppCarnet.views import Home, CrearCarnet, Index, DatosPersonales, CrearCedula, ValidarCarnets, ValidarCarnet, CrearSeguro, MostrarSeguros
 from AppCarnet.forms import UsuarioForm, DireccionForm
-#from django.contrib.auth.decorators import login_required
-#from django.contrib.admin.views.decorators import staff_member_required
+from django.contrib.auth.decorators import login_required
+from django.contrib.admin.views.decorators import staff_member_required
 
 #path('validar-carnets/', staff_member_required(login_url="home")(ValidarCarnets.as_view()), name='validar-carnets'),
 #path('carnet/', login_required(login_url="login")(CrearCarnet.as_view()), name='carnet'),
@@ -37,8 +37,8 @@ urlpatterns = [
     path('mostrar/', views.mostrar_carnet, name = 'mostrar-carnet'),
     path('mostrar_cedula/', views.mostrar_cedula , name = 'mostrar-cedula'),
     path('datos-personales/', DatosPersonales.as_view([UsuarioForm, DireccionForm]), name='datos-personales'),
-    path('validar-carnets/', ValidarCarnets.as_view(), name='validar-carnets'),
-    path('validar-carnets/<int:pk>/', ValidarCarnet.as_view(), name='validar-carnet'),
+    path('validar-carnets/', staff_member_required(login_url="home")(ValidarCarnets.as_view()), name='validar-carnets'),
+    path('carnet/', login_required(login_url="login")(CrearCarnet.as_view()), name='carnet'),
     path('done/', DatosPersonales.as_view(), name='done'),
     path('validated_carnet', views.validated_carnet, name='validated_carnet'),
     path('admin/', admin.site.urls),

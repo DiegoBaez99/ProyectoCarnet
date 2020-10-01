@@ -27,7 +27,7 @@ def signup(request):
         if f.is_valid():
             f.save()
             messages.success(request, 'Cuenta creada satisfactoriamente.')
-            return redirect('datos-personales')#url.py
+            return redirect('login')#url.py
     else:
         f = CustomUserCreationForm()
 

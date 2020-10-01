@@ -24,7 +24,7 @@ class CarnetAdmin(admin.ModelAdmin):
     def titular(self):
         usuarios = Usuario.objects.all()
         for usuario in usuarios:
-            if usuario.carnet_id == self.n_carnet:
+            if usuario.id == self.n_carnet:
                 return f'{usuario.last_name} {usuario.first_name}'.upper()
 
         
