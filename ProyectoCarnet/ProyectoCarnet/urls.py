@@ -19,7 +19,7 @@ from AppCarnet import views
 from django.contrib.auth import views as auth_views
 from django.conf import settings
 from django.conf.urls.static import static
-from AppCarnet.views import Home, CrearCarnet, Index, DatosPersonales, CrearCedula, ValidarCarnets, ValidarCarnet, CrearSeguro
+from AppCarnet.views import Home, CrearCarnet, Index, DatosPersonales, CrearCedula, ValidarCarnets, ValidarCarnet, CrearSeguro, MostrarSeguros
 from AppCarnet.forms import UsuarioForm, DireccionForm
 #from django.contrib.auth.decorators import login_required
 #from django.contrib.admin.views.decorators import staff_member_required
@@ -34,6 +34,8 @@ urlpatterns = [
     path('signup/', views.signup, name='signup'),
     path('carnet/', CrearCarnet.as_view(), name='carnet'),
     path('cedula/', CrearCedula.as_view(), name='cedula'),
+    path('mostrar/', views.mostrar_carnet, name = 'mostrar-carnet'),
+    path('mostrar_cedula/', views.mostrar_cedula , name = 'mostrar-cedula'),
     path('datos-personales/', DatosPersonales.as_view([UsuarioForm, DireccionForm]), name='datos-personales'),
     path('validar-carnets/', ValidarCarnets.as_view(), name='validar-carnets'),
     path('validar-carnets/<int:pk>/', ValidarCarnet.as_view(), name='validar-carnet'),
@@ -44,7 +46,7 @@ urlpatterns = [
     path('population-chart/', views.population_chart, name='population_chart'),
     path('paises-carnet/', views.mostrar, name='paises-carnet'),
     path('tipos-carnet/', views.tipos_carnet, name='tipos-carnet'),
-    path('mostrar-seguro/',views.mostrarSeguro, name='mostrat-seguro'),
+    path('mostrar-seguro/', MostrarSeguros.as_view(), name='mostrar-seguro'),
     path('seguro/',CrearSeguro.as_view(), name='seguro'),
     path('reset_password/', auth_views.PasswordResetView.as_view(template_name='reset_password/password_reset_form.html'), name='reset_password'),
     path('reset_password_sent/', auth_views.PasswordResetDoneView.as_view(template_name='reset_password/password_reset_done.html'), name='password_reset_done'),

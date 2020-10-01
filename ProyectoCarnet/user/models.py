@@ -53,7 +53,7 @@ class Carnet(models.Model):
     validado = models.BooleanField(default=False, blank=True)
     user = models.ForeignKey(Usuario, on_delete=models.CASCADE, blank=True, null=True, related_name='users')
     foto_frente = models.ImageField(upload_to='media/carnet/frente/', null=True,blank=True)
-    foto_atras = models.ImageField(upload_to='media/carnet/atras/', null=True,blank=True)
+    
 
 class Marca(models.Model):
     nombre = models.CharField(max_length=45)
@@ -101,7 +101,7 @@ class Cedula(models.Model):
     uso = models.ForeignKey(TipoUso, on_delete=models.CASCADE, null=True)
     user = models.ForeignKey(Usuario, on_delete=models.CASCADE, blank=True, null=True)
     foto_frente = models.ImageField(upload_to='media/cedula/frente/', null=True,blank=True)
-    foto_atras = models.ImageField(upload_to='media/cedula/atras/', null=True,blank=True)
+   
 
 
 

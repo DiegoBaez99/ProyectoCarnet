@@ -12,10 +12,9 @@ class CarnetForm(forms.ModelForm):
     vencimiento = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
     donante = forms.ChoiceField(choices=CHOICES)
     foto_frente = forms.ImageField(required = False)
-    foto_atras = forms.ImageField(required = False)
     class Meta:
         model = Carnet
-        fields = ['n_carnet', 'donante', 'otorgamiento', 'vencimiento', 'grupo_s', 'tipo_carnet','foto_frente', 'foto_atras']
+        fields = ['n_carnet', 'donante', 'otorgamiento', 'vencimiento', 'grupo_s', 'tipo_carnet','foto_frente']
         labels = {
             'n_carnet': "Ingrese el numero de carnet",            
             'donante': "¿Es donante?",
@@ -24,7 +23,6 @@ class CarnetForm(forms.ModelForm):
             'grupo_s': "Ingrese seu grupo sanguineo",
             'tipo_carnet': "Ingrese su tipo de carnet",
             'foto_frente': "Cargue una foto del frente de su carnet",
-            'foto_atras': "Cargue una foto de atrás de su carnet",
         }
     
     def clean_n_carnet(self):
@@ -128,11 +126,10 @@ class CedulaForm(forms.ModelForm):
     emision = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
     vencimiento = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
     foto_frente = forms.ImageField(required = False)
-    foto_atras = forms.ImageField(required = False)
     class Meta:
         model = Cedula
         
-        fields = ['num_cedula', 'patente', 'marca', 'modelo', 'uso', 'num_motor', 'num_chasis', 'emision', 'vencimiento','foto_frente', 'foto_atras']
+        fields = ['num_cedula', 'patente', 'marca', 'modelo', 'uso', 'num_motor', 'num_chasis', 'emision', 'vencimiento','foto_frente']
 
         labels = {
             'num_cedula': "Ingrese el numero de cedula",
@@ -144,8 +141,7 @@ class CedulaForm(forms.ModelForm):
             'num_chasis': "Ingrese el numero de chasis",
             'emision': "Ingrese la fecha de emision",
             'vencimiento': "Ingrese el vencimiento",
-            'foto_frente': "Cargue una foto del frente de su carnet",
-            'foto_atras': "Cargue una foto de atrás de su carnet",
+            'foto_frente': "Cargue una foto del frente de su carnet"
         }
 
     def clean_num_cedula(self):

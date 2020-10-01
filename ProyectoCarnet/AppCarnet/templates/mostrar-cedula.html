@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    Mostrar Cédula
+{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/estilo.css' %}" /></noscript>
+{% for c in cedula %}
+<div class ="container-cedula">
+    <div class = "cedula-container">
+       
+        <div class="contenedor-cedula">
+            <div class="header-cedula">  
+                <div class="superman">
+                    <center><h2>Cédula del Automotor</h2></center>
+                       <div class= "texto-1">
+                            <td > Presidencia   Roque  Sáenz Peña</td>
+                       </div>
+
+                </div>
+                    <br>
+                    <td>Apellido: {{c.user.last_name}}</td>                
+                    <br>Nombre: {{c.user.first_name}}</br>
+                    <td>Fecha de nac: {{c.user.nacimiento}}</td>
+                    <br>Nacionalidad: {{c.user.nacionalidad}}</br>
+                    <td>Domicilio: {{c.user.direccion.nombre}} - {{c.user.direccion.numero}} - {{c.user.direccion.piso}} - {{c.user.direccion.altura}}</td>
+                    <br>Número de cédula : {{c.num_cedula}}</br>
+                    <td>Patente: {{c.patente}}</td>
+           
+            </div>
+             <div class=" datos-cedula">  
+                 <div class="chapulin">
+                    <center><h1>Republica Argentina</h1></center>
+                    <div class= "texto-2">
+                        <td >Sáenz Peña </td>
+                       </div>
+                 </div> 
+                <div class="abajo-fotin-cedula">
+                    
+                    <td>Número de Motor: {{c.num_motor }}</td>
+                     <br >Modelo: {{c.modelo}}</br> 
+                     <td >Número de Chásis: {{c.num_chasis}}</td>
+                     <br >Marca: {{c.marca}}</br> 
+                     <td >Uso: {{c.uso}}</td>
+                     <br >Emisión: {{c.emision}}</br> 
+                     <td >Vencimiento: {{c.vencimiento}}</td>
+                     
+                </div>
+            </div>
+        </div>
+    </div>                
+</div>
+{% endfor %}    
+<div class="boton">
+    <center>
+        <button>
+            <a href="{% url 'home'  %}">Volver</a>
+        </button>
+    </center>
+</div>
+{% endblock content %}
+    

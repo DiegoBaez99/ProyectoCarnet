@@ -100,6 +100,7 @@ class DatosPersonales(SessionWizardView):
         forms = iter(form_list)
         form_user = next(forms)
         current_user = self.request.user #obtenemos el usuario logueado actualmente
+        
         user = form_user.save(commit=False) #False para no guardar todavia los dats en la db 
         #asignamos manualmente cada uno de los campos del modelo Usuario
         current_user.first_name = user.first_name
@@ -117,7 +118,6 @@ class DatosPersonales(SessionWizardView):
         return HttpResponseRedirect('/')
 
 class ValidarCarnets(ListView):
-    login_required = True
     model = Carnet
     template_name = 'validar-carnets.html'
     context_object_name = 'carnets'
@@ -186,10 +186,24 @@ class CrearSeguro(CreateView):
     template_name = 'seguro.html'
     success_url = reverse_lazy('home')
 
-def mostrarSeguro(request):
-    seguro=Seguro.objects.all()
-    tipo_uso=TipoUso.objects.all()
-    return render(request,'mostrarSeguro.html',{'seguro':seguro,'tipo_uso':tipo_uso})
+class MostrarSeguros(ListView):
+    model = Seguro
+    template_name = 'mostrar-seguro.html'
+    context_object_name = 'seguros'
+    queryset = Seguro.objects.all()
+    paginate_by = 5
+
+def mostrar_carnet(request):
+    current_user = request.user     
+    carnet = Carnet.objects.filter(user_id=current_user.id)
+    return render(request, 'mostrar-carnet.html',  {'carnet':carnet})
+
+
+def mostrar_cedula(request):
+    current_user = request.user     
+    cedula = Cedula.objects.filter(user_id=current_user.id)
+    return render(request, 'mostrar-cedula.html', {'cedula':cedula})
+
 
 def logoutUser(request):
     logout(request)
