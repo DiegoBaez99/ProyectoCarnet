@@ -159,5 +159,5 @@ def mostrar(request):
 def mostrar_cedula(request):
     current_user = request.user     
     cedula = Cedula.objects.filter(user_id=current_user.id)
-    return render(request, 'mostrar_cedula.html',  {'cedula':cedula})
+    return render(request, 'mostrar_cedula.html', {'cedula':cedula})
 
