@@ -38,6 +38,7 @@ urlpatterns = [
     path('mostrar_cedula/', views.mostrar_cedula , name = 'mostrar-cedula'),
     path('datos-personales/', DatosPersonales.as_view([UsuarioForm, DireccionForm]), name='datos-personales'),
     path('validar-carnets/', staff_member_required(login_url="home")(ValidarCarnets.as_view()), name='validar-carnets'),
+    path('validar-carnets/<int:pk>/', staff_member_required(login_url="home")(ValidarCarnet.as_view()), name='validar-carnets'),
     path('carnet/', login_required(login_url="login")(CrearCarnet.as_view()), name='carnet'),
     path('done/', DatosPersonales.as_view(), name='done'),
     path('validated_carnet', views.validated_carnet, name='validated_carnet'),
@@ -52,6 +53,7 @@ urlpatterns = [
     path('reset_password_sent/', auth_views.PasswordResetDoneView.as_view(template_name='reset_password/password_reset_done.html'), name='password_reset_done'),
     path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name='reset_password/password_reset_confirm.html'), name='password_reset_confirm'),
     path('reset_password_complete/', auth_views.PasswordResetCompleteView.as_view(template_name='reset_password/password_reset_complete.html'), name='password_reset_complete'),
+    
 ]
 
 if settings.DEBUG:

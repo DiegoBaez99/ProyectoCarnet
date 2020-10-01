@@ -5,53 +5,56 @@
 {% endblock %}
 
 {% block content %}
-    
-<div class="card">
-	<form action="{% url 'validated_carnet' %}" method="POST">
-		{% csrf_token %}
-        <div class ="container">
-            <div class = "carnet-container">
-                <div class="contenedor">
-                    <div class="header">  
-                               <center><h2>Registro de Conductor</h2></center>
-                               <center><td>Presidencia Roque Saénz Peña</td></center>
-                               <br>
-                            <td>Apellido: {{object.user.last_name}}</td>                
-                            <br>Nombre: {{object.user.first_name}}</br>
-                            <td>Fecha de nac: {{object.user.nacimiento}}</td>
-                            <br>Nacionalidad: {{object.user.nacionalidad}}</br>
-                            <td>Número de carnet : {{object.n_carnet}}</td>
-                            <br>Tipo: {{object.tipo_carnet}}</br>
-                            <td>Grupo Sanguineo: {{object.grupo_s}}</td>
-                            <br>Domicilio: {{object.user.direccion.nombre}} - {{object.user.direccion.numero}} - {{object.user.direccion.piso}} - {{object.user.direccion.altura}}</br>
-                    </div>
-                     <div class=" datos">   
-                        <center><h1>Republica Argentina</h1></center>
-                        <div class = "fotin">
-                                <img src="{{object.foto_frente.url}}" alt="Foto del carnet"><!--direccion de la foto de entrada-->
-                             
+<link rel="stylesheet" href="{% static 'assets/css/estilo.css' %}" /></noscript>    
+    <div class="card">
+        <form action="{% url 'validated_carnet' %}" method="POST">
+            {% csrf_token %}
+            <div class ="container">
+                <div class = "carnet-container">
+                    <div class="contenedor">
+                        <div class="header">  
+                                <center><h2>Registro de Conductor</h2></center>
+                                <center><td>Presidencia Roque Saénz Peña</td></center>
+                                <br>
+                                <td>Apellido: {{object.user.last_name}}</td>                
+                                <br>Nombre: {{object.user.first_name}}</br>
+                                <td>Fecha de nac: {{object.user.nacimiento}}</td>
+                                <br>Nacionalidad: {{object.user.nacionalidad}}</br>
+                                <td>Número de carnet : {{object.n_carnet}}</td>
+                                <br>Tipo: {{object.tipo_carnet}}</br>
+                                <td>Grupo Sanguineo: {{object.grupo_s}}</td>
+                                <br>Domicilio: {{object.user.direccion.nombre}} - {{object.user.direccion.numero}} - {{object.user.direccion.piso}} - {{object.user.direccion.altura}}</br>
                         </div>
-                        <p> </p>
-                        <p></p>
-                        <div class="abajo-fotin">
-                            <td>Donante : {{object.donante}}</td>
-                             <br class="label">Otorgamiento: {{object.otorgamiento}}</br> 
-                             <td class="label">Vencimiento: {{object.vencimiento}}</td>
+                        <div class=" datos">   
+                            <center><h1>Republica Argentina</h1></center>
+                            <div class = "fotin">
+                                    <img src="{{object.imagen.url}}" alt="Foto del carnet"/>  <!--direccion de la foto de entrada-->
+                                
+                            </div>
+                            <p> </p>
+                            <p></p>
+                            <div class="abajo-fotin">
+                                <td>Donante : {{object.donante}}</td>
+                                <br class="label">Otorgamiento: {{object.otorgamiento}}</br> 
+                                <td class="label">Vencimiento: {{object.vencimiento}}</td>
 
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>                
+                </div>                
+            </div>
+                
+               
         </div>
-			
-			</div>
-		  <input type="hidden" value="{{object.id}}" name="carnet_id">
-		  <div>
-			<input type="submit" value="Validar" name="validar" id="validar_id">
-			<input type="submit" value="Rechazar" name="rechazar" id="rechazar_id">
-		  </div>
-	</form>
-  </div>
+        <center> <img src="{{object.foto_frente.url}}" alt="Foto del carnet" width="900" height="600"/> </center>
+            <input type="hidden" value="{{object.id}}" name="carnet_id">
+            <div class="validar">
+                <input type="submit" value="Validar" name="validar" id="validar_id">
+                <input type="submit" value="Rechazar" name="rechazar" id="rechazar_id">
+            </div>
+        </form>
+    </div>
+
 
 {% endblock content%}
 

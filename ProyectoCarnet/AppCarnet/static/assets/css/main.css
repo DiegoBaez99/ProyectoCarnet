@@ -4235,21 +4235,34 @@ input#id_vencimiento{
 
 input#id_n_carnet{
 	-moz-appearance: none;
-    -webkit-appearance: none;
-    -ms-appearance: none;
-    appearance: none;
-    background: rgb(52, 84, 182);
-    border-radius: 5px;
-    border: none;
-    border: solid 2px #0A0A0A;
-    color: #FFFFFF;
-    display: block;
-    outline: 0;
-    padding: 0 1em;
-    text-decoration: none;
-    width: 100%;
-    font-weight: bold;
+	-webkit-appearance: none;
+	-ms-appearance: none;
+	appearance: none;
+	-moz-transition: background-color 0.2s ease-in-out;
+	-webkit-transition: background-color 0.2s ease-in-out;
+	-ms-transition: background-color 0.2s ease-in-out;
+	transition: background-color 0.2s ease-in-out;
+	background-color: rgb(52, 84, 182);
+	border-radius: 5px;
+	border: 0;
+	box-shadow: inset 0 0 0 2px #0f0f0f;
+	color: #FFFFFF !important;
+	cursor: pointer;
+	display: inline-block;
+	font-family: Raleway, Helvetica, sans-serif;
+	font-size: 0.8em;
+	font-weight: 700;
+	height: 3.75em;
+	letter-spacing: 0.1em;
+	line-height: 3.75em;
+	padding: 0 2.25em;
+	text-align: start;
+	text-decoration: none;
+	text-transform: uppercase;
+	white-space: nowrap;
+	width: 100%;
 }
+
 
 input#id_foto{
 	-moz-appearance: none;
@@ -4369,39 +4382,65 @@ input.cargarcarnet{
 
 input#id_num_motor{
 	-moz-appearance: none;
-    -webkit-appearance: none;
-    -ms-appearance: none;
-    appearance: none;
-    background: rgb(52, 84, 182);
-    border-radius: 5px;
-    border: none;
-    border: solid 2px #0A0A0A;
-    color: #FFFFFF;
-    display: block;
-    outline: 0;
-    padding: 0 1em;
-    text-decoration: none;
-    width: 100%;
-    font-weight: bold;
+	-webkit-appearance: none;
+	-ms-appearance: none;
+	appearance: none;
+	-moz-transition: background-color 0.2s ease-in-out;
+	-webkit-transition: background-color 0.2s ease-in-out;
+	-ms-transition: background-color 0.2s ease-in-out;
+	transition: background-color 0.2s ease-in-out;
+	background-color: rgb(52, 84, 182);
+	border-radius: 5px;
+	border: 0;
+	box-shadow: inset 0 0 0 2px #0f0f0f;
+	color: #FFFFFF !important;
+	cursor: pointer;
+	display: inline-block;
+	font-family: Raleway, Helvetica, sans-serif;
+	font-size: 0.8em;
+	font-weight: 700;
+	height: 3.75em;
+	letter-spacing: 0.1em;
+	line-height: 3.75em;
+	padding: 0 2.25em;
+	text-align: start;
+	text-decoration: none;
+	text-transform: uppercase;
+	white-space: nowrap;
+	width: 100%;
 }
+
 
 input#id_num_chasis{
 	-moz-appearance: none;
-    -webkit-appearance: none;
-    -ms-appearance: none;
-    appearance: none;
-    background: rgb(52, 84, 182);
-    border-radius: 5px;
-    border: none;
-    border: solid 2px #0A0A0A;
-    color: #FFFFFF;
-    display: block;
-    outline: 0;
-    padding: 0 1em;
-    text-decoration: none;
-    width: 100%;
-    font-weight: bold;
+	-webkit-appearance: none;
+	-ms-appearance: none;
+	appearance: none;
+	-moz-transition: background-color 0.2s ease-in-out;
+	-webkit-transition: background-color 0.2s ease-in-out;
+	-ms-transition: background-color 0.2s ease-in-out;
+	transition: background-color 0.2s ease-in-out;
+	background-color: rgb(52, 84, 182);
+	border-radius: 5px;
+	border: 0;
+	box-shadow: inset 0 0 0 2px #0f0f0f;
+	color: #FFFFFF !important;
+	cursor: pointer;
+	display: inline-block;
+	font-family: Raleway, Helvetica, sans-serif;
+	font-size: 0.8em;
+	font-weight: 700;
+	height: 3.75em;
+	letter-spacing: 0.1em;
+	line-height: 3.75em;
+	padding: 0 2.25em;
+	text-align: start;
+	text-decoration: none;
+	text-transform: uppercase;
+	white-space: nowrap;
+	width: 100%;
 }
+
 input#id_0-nacimiento{
 	-moz-appearance: none;
 	-webkit-appearance: none;
@@ -4454,10 +4493,11 @@ input#id_0-dni{
 	letter-spacing: 0.1em;
 	line-height: 3.75em;
 	padding: 0 2.25em;
-	text-align: center;
+	text-align: start;
 	text-decoration: none;
 	text-transform: uppercase;
 	white-space: nowrap;
+	width: 100%;
 }
 
 input#id_0-phone{
@@ -4487,6 +4527,7 @@ input#id_0-phone{
 	text-decoration: none;
 	text-transform: uppercase;
 	white-space: nowrap;
+	width: 100%;
 }
 input#id_1-numero{
 	-moz-appearance: none;
@@ -4515,4 +4556,10 @@ input#id_1-numero{
 	text-decoration: none;
 	text-transform: uppercase;
 	white-space: nowrap;
+	width: 100%;
+}
+
+.validar{
+	text-align: center;
+	padding-top: 50px;
 }
