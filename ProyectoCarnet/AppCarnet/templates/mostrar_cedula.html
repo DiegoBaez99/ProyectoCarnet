@@ -5,45 +5,63 @@
 {% endblock %}
 
 {% block content %}
-    <link rel="stylesheet" href="{% static 'css/estilo.css' %}" /></noscript>
+<link rel="stylesheet" href="{% static 'css/estilo.css' %}" /></noscript>
+{
+<div class ="container-cedula">
+    <div class = "cedula-container">
+       
+        <div class="contenedor-cedula">
+            <div class="header-cedula">  
+                <div class="superman">
+                    <center><h2>Cédula del Automotor</h2></center>
+                       <div class= "texto-1">
+                            <td > Presidencia   Roque  </td>
+                       </div>
 
-        <div class ="container">
-         
-
-            <div class = "carnet-container">
-                
-                <div class="titulo">
-                    
-                        <h1>carbe
-                        
-                        </h1>
-                    
                 </div>
-                 <div class="header">                          
-                        <p class="label">Apellido: {{carnet.user.last_name}}</p>                
-                        <p class="label">Nombre: {{carnet.user.first_name}}</p>
-                        <p class="label">Fecha de nac: {{carnet.user.nacimiento}}</p>
-                        <p class="label">Domicilio: {{carnet.user.direccion.nombre}} - {{carnet.user.direccion.numero}} - {{carnet.user.direccion.piso}} - {{carnet.user.direccion.altura}}</p>
-                    </div>
-                    <div class=" datos">   
-                        <p class="label">Número de cedula : {{cedula.num_cedula}}</p>
-                        <p class="label">Patente: {{cedula.patente}}</p>
-                        <p class="label">Otorgamiento: {{carnet.otorgamiento}}</p> 
-                        <p class="label">Vencimiento: {{carnet.vencimiento}}</p>
-                        <p class="label">Nacionalidad: {{carnet.user.nacionalidad}}</p>
-    
-                    </div>
+                       
+                        <br>
+                    <td>Apellido: {{cedula.user.last_name}}</td>                
+                    <br>Nombre: {{cedula.user.first_name}}</br>
+                    <td>Fecha de nac: {{cedula.user.nacimiento}}</td>
+                    <br>Nacionalidad: {{cedulña.user.nacionalidad}}</br>
+                    <td>Domicilio: {{c.user.direccion.nombre}} - {{c.user.direccion.numero}} - {{c.user.direccion.piso}} - {{c.user.direccion.altura}}</td>
+                    <br>Número de cédula : {{cedula.num_cedula}}</br>
+                    <td>Patente: {{cedula.patente}}</td>
+           
+            </div>
+             <div class=" datos-cedula">  
+                 <div class="chapulin">
+                    <center><h1>Republica Argentina</h1></center>
+                    <div class= "texto-2">
+                        <td >Saénz Peña </td>
+                       </div>
+                 </div> 
                 
+                       
+                
+                <div class="abajo-fotin-cedula">
+                    
+                    <td>Número de Motor: {{cedula.num_motor }}</td>
+                     <br >Modelo: {{cedula.modelo}}</br> 
+                     <td >Número de Chásis: {{cedula.num_chasis}}</td>
+                     <br >Marca: {{cedula.marca}}</br> 
+                     <td >Uso: {{cedula.uso}}</td>
+                     <br >Emisión: {{cedula.emision}}</br> 
+                     <td >Vencimiento: {{cedula.vencimiento}}</td>
+                     
+                </div>
             </div>
         </div>
-        <div class="boton">
-            <center>
-                <button>
-                    <a href="{% url 'home'  %}">Volver</a>
-                </button>
-            </center>
-        </div>
-
-
+    </div>                
+</div>
+    
+<div class="boton">
+    <center>
+        <button>
+            <a href="{% url 'home'  %}">Volver</a>
+        </button>
+    </center>
+</div>
 {% endblock content %}
     
