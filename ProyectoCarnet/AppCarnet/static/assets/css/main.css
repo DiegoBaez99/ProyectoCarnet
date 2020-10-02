@@ -35,7 +35,7 @@ body {
 	line-height: 1;
 }
 form{
-	padding: 150px 30px 30px 30px;
+	padding: 50px 30px 30px 30px;
 }
 ol, ul {
 	list-style: none;
@@ -2795,11 +2795,14 @@ input, select, textarea {
 	.table-wrapper {
 		-webkit-overflow-scrolling: touch;
 		overflow-x: auto;
+		text-align: center;
+		
 	}
 
 	table {
 		margin: 0 0 2em 0;
 		width: 100%;
+		margin-top: 70px;
 	}
 
 		table tbody tr {

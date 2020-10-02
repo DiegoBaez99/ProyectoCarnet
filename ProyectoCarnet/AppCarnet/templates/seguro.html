@@ -1,213 +1,42 @@
-{%load static%}
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Cargar Seguro</title>
-    <link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
-    <noscript><link rel="stylesheet" href="{% static 'assets/css/noscript.css' %}" /></noscript>
-    <!-- Page Wrapper -->
-      <div id="page-wrapper">
 
-        <!-- Header -->
-          <header id="header" class="alt">
-            <h1><a href="index.html">Solid State</a></h1>
-            <nav>
-              <a href="#menu">Menu</a>
-            </nav>
-            <nav id="menu">
-            <!-- Menu -->
-              <div class="inner">
-                <h2>Menu</h2>
-                <ul class="links">
-          <li><a href="{% url 'home' %}">Inicio</a></li>
-          {% if user.is_authenticated %}
-          <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
-          {% else %}
-                  <li><a href="{% url 'login' %}">Iniciar Sesión</a></li>
-          <li><a href="{% url 'signup' %}">Registrate</a></li>
-          {% endif %}
-                </ul>
-                <a href="#" class="close">Cerrar</a>
-              </div>
-            </nav>
-          </header>
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Seguro{% endblock title %}
+{% block content %}    
 
-</head>
-<body>
-       <h1>Cargar Seguro</h1>
-        <form id="MiFormulario" name="formulario" action='' method="POST">
-            {% csrf_token %}
-           <table>
-               <tbody>
-                   <tr>
-                       <th>{{ form.nombre.label }}</th>
-                       <td>{{ form.nombre }}</td>
-                   </tr>
-                   <tr>
-                       <th>{{ form.num_poliza.label }}</th>
-                       <td>{{ form.num_poliza }}</td>
-                   </tr>
-                   <tr>
-                       <th>{{ form.tel.label }}</th>
-                       <td>{{ form.tel }}</td>
-                   </tr>
-                   <tr>
-                       <th>{{ form.tel_emergencia.label }}</th>
-                       <td>{{ form.tel_emergencia }}</td>
-                   </tr>
-                   <tr>
-                       <th>{{ form.tipo_uso.label }}</th>
-                       <td>{{ form.tipo_uso }}</td>
-                   </tr>
-                       <td></td>
-                       <td>
-                        <input type="submit" class="button" value="Registrar" >
-                       </td>
-                   </tr>
-               </tbody>
-           </table>
-        </form>
-<!-- Esta capa es la que se muestra transparente y que contiene el cuadro de dialogo -->
-<div id="capa">
-  <div>
-    <div class="title">Confirmar el envío del formulario</div>
-    <div class="text">¿Desea continuar?</div>
-    <div class="buttons">
-      <button class="button button1"  id="ok">Confirmar</button>
-      <button  class="button button2"  id="ko">Cancelar</button>
-    </div>
-  </div>
-</div>
+       
+<form id="MiFormulario" name="formulario" action='' method="POST">
+  <center><h1>Cargar Seguro</h1></center>
+    {% csrf_token %}
+  <table>
+      <tbody>
+          <tr>
+              <th>{{ form.nombre.label }}</th>
+              <td>{{ form.nombre }}</td>
+          </tr>
+          <tr>
+              <th>{{ form.num_poliza.label }}</th>
+              <td>{{ form.num_poliza }}</td>
+          </tr>
+          <tr>
+              <th>{{ form.tel.label }}</th>
+              <td>{{ form.tel }}</td>
+          </tr>
+          <tr>
+              <th>{{ form.tel_emergencia.label }}</th>
+              <td>{{ form.tel_emergencia }}</td>
+          </tr>
+          <tr>
+              <th>{{ form.tipo_uso.label }}</th>
+              <td>{{ form.tipo_uso }}</td>
+          </tr>
+              <td></td>
+              <td>
+              <input type="submit" class="button" value="Registrar" >
+              </td>
+          </tr>
+      </tbody>
+  </table>
+</form>
 
-<!-- Scripts -->
-      <script src="{% static 'assets/js/jquery.min.js' %}"></script>
-      <script src="{% static 'assets/js/jquery.scrollex.min.js' %}"></script>
-      <script src="{% static 'assets/js/browser.min.js' %}"></script>
-      <script src="{% static 'assets/js/breakpoints.min.js' %}"></script>
-      <script src="{% static 'assets/js/util.js' %}"></script>
-      <script src="{% static 'assets/js/main.js' %}"></script>
-      <footer>
-        <!-- Footer -->
-          <section id="footer">
-            <div class="inner">
-              
-              <ul class="copyright">
-                <li>&copy; Untitled Inc. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-              </ul>
-            </div>
-          </section>
-           </footer>
-      </div>
-</body>
-<script>
-// devinimos los tres eventos del formulario
-document.getElementById("MiFormulario").addEventListener("submit", submit);
-document.getElementById("ok").addEventListener("click", enviar);
-document.getElementById("ko").addEventListener("click", cancelar);
- 
-// Funcion que se ejecuta al pulsar el botón registrar en el formulario
-function submit(e) {
-  // Cancelamos el envio a la espera de que valide el formulario
-  e.preventDefault();
- 
-  // Mostramos la capa con el formulario de validacion
-  document.getElementById("capa").style.display="block";
-}
- 
-// Funcion que se ejecuta al pulsar el boton Enviar de cuadro de dialogo
-function enviar(e) {
-  // Escondemos la capa
-  document.getElementById("capa").style.display="none";
-  
-  // Enviamos el formulario
-  document.formulario.submit();
-}
- 
-// Funcion que se ejecuta al pulsar el boton Cancelar de cuadro de dialogo
-function cancelar(e) {
-  // Simplemente escondemkos el formulario
-  document.getElementById("capa").style.display="none";
-}
-</script>
- 
-<style>
-
-label {
-  display:inline-block;
-  width:100px;
-  text-align:center;
-  margin-right:10px;
-}
-
- 
-#capa {
-  display:none;
-  position:absolute;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background:rgba(0, 0, 0, 0.7);
-}
- 
-#capa>div:first-child {
-  margin:0;
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
- 
-  width:350px;
-  height: 200px;
-  border:1px solid #ebebeb;
-  padding:5px;
-  background:#3F4553;
-}
- 
-.title {
-  background-color: #2E3141;
-  padding: 5px;
-  text-align: center;
-  font-weight:bold;
-  font-size: 20px;
-}
-.text {
-  text-align:center;
-  padding: 10px;
-  font-size: 28px;
-}
-
-.button {
- text-align: center;
- border: none;
- color: black;
- padding: auto;
- text-decoration: none;
- display: inline-block;
- font-size: 9pt;
- margin-left: 16px;
- margin-right: 10px;
- margin-top: 15px;
- transition-duration: 0.4s;
- cursor: pointer;
-}
-
-.button1 {
- background-color:#4CAF50;
- color: black;
- border: 2px solid #008CBA;
-
-}
-
-
-.button2 {
- background-color: #ff1a1a;
- color: black;
- border: 2px solid #008CBA;
-
-}
-
-
-</style>
-
-</html>
+{% endblock %}
