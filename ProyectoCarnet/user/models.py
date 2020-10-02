@@ -32,16 +32,9 @@ class TipoCarnet(models.Model):
 class Usuario(AbstractUser):
     dni = models.IntegerField(blank=True, null=True)
     nacimiento = models.DateField(blank=True, null=True)
-    image = models.ImageField(upload_to='users/%Y/%m/%d', null=True, blank=True)
     nacionalidad = models.ForeignKey(Nacionalidad, on_delete=models.CASCADE, null=True)
     phone = models.IntegerField(blank=True, null=True)
     direccion = models.ForeignKey(Direcciones, on_delete=models.CASCADE, null=True, blank=True)
-    
-
-    def getImage(self):
-        if(self.image):
-            return f'{MEDIA_URL}{self.image}'
-        return '{}{}'.format(STATIC_URL, 'img/empty.png')
 
 class Carnet(models.Model):
     n_carnet = models.IntegerField()    
